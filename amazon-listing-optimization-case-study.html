@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Listing Optimization Case Study</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      :root {
+        --page: #f5f7fb;
+        --surface: #ffffff;
+        --ink: #17202a;
+        --muted: #627084;
+        --line: #dfe5ee;
+        --before: #c2410c;
+        --before-soft: #fff4ed;
+        --before-line: #fed7aa;
+        --after: #047857;
+        --after-soft: #ecfdf5;
+        --after-line: #bbf7d0;
+        --accent: #1d4ed8;
+        --shadow: 0 18px 45px rgba(23, 32, 42, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--page);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .app {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 40px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(1.85rem, 4vw, 3.15rem);
+        line-height: 1.03;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin: 12px 0 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.55;
+      }
+
+      .product-visual {
+        width: 220px;
+        min-height: 168px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .visual-label {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .battery-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .battery {
+        position: relative;
+        height: 26px;
+        border: 1px solid #94a3b8;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #111827 0 16%, #2563eb 16% 76%, #111827 76% 100%);
+        overflow: hidden;
+      }
+
+      .battery::after {
+        content: "3500mAh";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #ffffff;
+        font-size: 0.68rem;
+        font-weight: 800;
+      }
+
+      .charger {
+        margin-top: 13px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 8px;
+        background: #111827;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+
+      .bay {
+        height: 42px;
+        border-radius: 4px;
+        background: #334155;
+        border: 1px solid #475569;
+      }
+
+      .comparison {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        align-items: start;
+      }
+
+      .listing-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .listing-card.before {
+        border-top: 6px solid var(--before);
+      }
+
+      .listing-card.after {
+        border-top: 6px solid var(--after);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .label {
+        margin: 0 0 4px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .before .label {
+        color: var(--before);
+      }
+
+      .after .label {
+        color: var(--after);
+      }
+
+      .score {
+        align-self: start;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .before .score {
+        color: var(--before);
+        background: var(--before-soft);
+        border: 1px solid var(--before-line);
+      }
+
+      .after .score {
+        color: var(--after);
+        background: var(--after-soft);
+        border: 1px solid var(--after-line);
+      }
+
+      .card-header h2 {
+        margin: 0;
+        font-size: 1.22rem;
+        line-height: 1.25;
+      }
+
+      .section {
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section:last-child {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .section-title::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      .listing-title {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.45;
+        font-weight: 800;
+      }
+
+      .bullets {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .bullets li {
+        margin: 0 0 11px;
+        line-height: 1.5;
+      }
+
+      .bullets li:last-child {
+        margin-bottom: 0;
+      }
+
+      .bullets strong {
+        color: var(--ink);
+      }
+
+      .description {
+        display: grid;
+        gap: 12px;
+      }
+
+      .description p {
+        margin: 0;
+        color: #334155;
+        line-height: 1.65;
+      }
+
+      .key-improvements {
+        margin-top: 22px;
+        border: 1px solid #bfdbfe;
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        padding: 22px;
+      }
+
+      .key-improvements h2 {
+        margin: 0 0 14px;
+        font-size: 1.2rem;
+      }
+
+      .improvement-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .improvement {
+        border-left: 4px solid var(--accent);
+        padding: 4px 0 4px 12px;
+      }
+
+      .improvement strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.92rem;
+      }
+
+      .improvement span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      @media (max-width: 920px) {
+        .topbar,
+        .comparison {
+          grid-template-columns: 1fr;
+        }
+
+        .product-visual {
+          width: 100%;
+        }
+
+        .battery-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .improvement-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .app {
+          width: min(100% - 20px, 1180px);
+          padding: 18px 0 28px;
+        }
+
+        .topbar {
+          gap: 14px;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .card-header {
+          display: grid;
+          padding: 18px;
+        }
+
+        .section,
+        .key-improvements {
+          padding: 18px;
+        }
+
+        .battery-row,
+        .improvement-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const beforeListing = {
+        label: "Before",
+        headline: "Bad Listing",
+        score: "Low conversion risk",
+        title: "18650 Battery 4 Pack Rechargeable",
+        bullets: [
+          "Rechargeable batteries for everyday use.",
+          "Works with many devices.",
+          "Long lasting and easy to charge.",
+          "Good quality batteries in a 4 pack.",
+        ],
+        description: [
+          "These batteries are rechargeable and can be used in many devices.",
+          "They are easy to carry and good for home or travel.",
+        ],
+      };
+
+      const afterListing = {
+        label: "After",
+        headline: "Optimized Listing",
+        score: "Search and trust optimized",
+        title:
+          "[Brand] 18650 Rechargeable Battery Kit, 4 Pack 3500mAh Li-ion Batteries with 4-Slot Smart Charger, UN38.3 Certified Button Top Cells for Flashlights, Vape Mods, Solar Lights",
+        bullets: [
+          "<strong>CAPACITY:</strong> Four 3500mAh 3.7V lithium-ion 18650 button-top batteries deliver steady runtime for high-drain flashlights, headlamps, fans, solar garden lights, and compatible regulated vape devices.",
+          "<strong>SAFETY:</strong> UN38.3 transport-tested cells and a smart charger with overcharge, short-circuit, reverse-polarity, and temperature protection help reduce common charging and storage concerns.",
+          "<strong>COMPATIBILITY:</strong> Standard 18mm x 65mm 18650 format fits devices that require button-top Li-ion cells; buyers should confirm device manual, polarity, voltage, and protected-cell clearance before use.",
+          "<strong>CHARGING:</strong> Independent 4-slot USB-C charger monitors each cell separately with LED status indicators, auto shutoff at full charge, and trickle-free charging for safer overnight prep.",
+          "<strong>INCLUDED:</strong> Kit includes 4 rechargeable 18650 batteries, 4-bay charger, USB-C cable, hard storage case, and quick safety guide for travel, home backup, and outdoor gear organization.",
+        ],
+        description: [
+          "Upgrade power-hungry gear with the [Brand] 18650 rechargeable battery kit, built for buyers who need dependable backup cells for flashlights, tactical lights, headlamps, solar pathway lights, portable fans, and compatible regulated vape mods. Each 3500mAh 3.7V Li-ion cell is designed to provide consistent output across repeated charge cycles while reducing disposable battery waste.",
+          "The included 4-slot smart charger manages every battery independently, so mixed charge levels can be topped off at the same time. LED indicators show charge progress at a glance, while built-in overcharge, short-circuit, reverse-polarity, and temperature protections help address the safety questions shoppers often have when buying 18650 batteries online.",
+          "This kit arrives ready to organize and store, with four button-top 18650 cells, a USB-C charging cable, a hard case, and a concise safety guide. For best results, confirm that your device supports 3.7V Li-ion 18650 button-top batteries and follow the manufacturer's charging, storage, and disposal instructions.",
+        ],
+      };
+
+      const improvements = [
+        {
+          title: "Search Coverage",
+          text: "Added capacity, pack size, charger, cell type, and primary use-case keywords.",
+        },
+        {
+          title: "Buyer Trust",
+          text: "Named UN38.3 testing and specific charger protections instead of vague quality claims.",
+        },
+        {
+          title: "Conversion Detail",
+          text: "Clarified compatibility, dimensions, voltage, and button-top fit requirements.",
+        },
+        {
+          title: "Offer Clarity",
+          text: "Listed the exact kit contents so shoppers know what arrives in the box.",
+        },
+        {
+          title: "Concern Handling",
+          text: "Used professional description copy to answer safety, storage, and device-fit questions.",
+        },
+      ];
+
+      function ProductVisual() {
+        return (
+          <aside className="product-visual" aria-label="Product kit visual">
+            <p className="visual-label">18650 Battery Kit</p>
+            <div className="battery-row" aria-hidden="true">
+              <div className="battery"></div>
+              <div className="battery"></div>
+              <div className="battery"></div>
+              <div className="battery"></div>
+            </div>
+            <div className="charger" aria-hidden="true">
+              <div className="bay"></div>
+              <div className="bay"></div>
+              <div className="bay"></div>
+              <div className="bay"></div>
+            </div>
+          </aside>
+        );
+      }
+
+      function ListingCard({ listing, tone }) {
+        return (
+          <article className={`listing-card ${tone}`}>
+            <header className="card-header">
+              <div>
+                <p className="label">{listing.label}</p>
+                <h2>{listing.headline}</h2>
+              </div>
+              <span className="score">{listing.score}</span>
+            </header>
+
+            <section className="section">
+              <h3 className="section-title">Title</h3>
+              <p className="listing-title">{listing.title}</p>
+            </section>
+
+            <section className="section">
+              <h3 className="section-title">Bullet Points</h3>
+              <ul className="bullets">
+                {listing.bullets.map((bullet) => (
+                  <li key={bullet} dangerouslySetInnerHTML={{ __html: bullet }} />
+                ))}
+              </ul>
+            </section>
+
+            <section className="section">
+              <h3 className="section-title">Description</h3>
+              <div className="description">
+                {listing.description.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </section>
+          </article>
+        );
+      }
+
+      function KeyImprovements() {
+        return (
+          <section className="key-improvements" aria-labelledby="improvements-title">
+            <h2 id="improvements-title">Key Improvements</h2>
+            <div className="improvement-grid">
+              {improvements.map((item) => (
+                <div className="improvement" key={item.title}>
+                  <strong>{item.title}</strong>
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
+      function App() {
+        return (
+          <main className="app">
+            <section className="topbar">
+              <div>
+                <p className="eyebrow">Amazon Listing Optimization Case Study</p>
+                <h1>18650 Rechargeable Battery Kit</h1>
+                <p className="subtitle">
+                  A portfolio-ready comparison showing how vague commodity copy becomes a searchable,
+                  safety-aware product listing with stronger buyer confidence signals.
+                </p>
+              </div>
+              <ProductVisual />
+            </section>
+
+            <section className="comparison" aria-label="Before and after listing comparison">
+              <ListingCard listing={beforeListing} tone="before" />
+              <ListingCard listing={afterListing} tone="after" />
+            </section>
+
+            <KeyImprovements />
+          </main>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
