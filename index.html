@@ -332,6 +332,43 @@
       padding: 28px;
     }
 
+    .card-media {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-bottom: 1px solid var(--faint);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background:
+        linear-gradient(180deg, transparent 68%, rgba(0, 0, 0, 0.26)),
+        linear-gradient(115deg, transparent 54%, rgba(41, 151, 255, 0.08));
+      pointer-events: none;
+    }
+
+    .card-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.06) brightness(1.12);
+      transform: scale(1.01);
+      transform-origin: center;
+    }
+
+    .project-card:hover .card-media img,
+    .project-card:focus-within .card-media img {
+      filter: saturate(1.16) brightness(1.22);
+      transform: scale(1.035);
+    }
+
     .tag {
       width: fit-content;
       max-width: 100%;
@@ -620,8 +657,11 @@
 
     <section class="portfolio" aria-labelledby="portfolio-title">
       <p class="section-label" id="portfolio-title">Selected Case Studies</p>
-      <div class="project-grid">
+      <div class="project-grid" id="portfolio-cards">
         <article class="project-card">
+          <figure class="card-media">
+            <img src="assets/images/product-18650-battery-kit-animated.webp" alt="18650 rechargeable battery kit product shot" />
+          </figure>
           <div class="card-body">
             <p class="tag">Electronics / Energy</p>
             <h2>18650 Rechargeable Battery Kit</h2>
@@ -641,6 +681,9 @@
         </article>
 
         <article class="project-card">
+          <figure class="card-media">
+            <img src="assets/images/product-portable-power-station-animated.webp" alt="Portable power station product shot" />
+          </figure>
           <div class="card-body">
             <p class="tag">Outdoor / Home Backup</p>
             <h2>Portable Power Station 300W</h2>
@@ -660,6 +703,9 @@
         </article>
 
         <article class="project-card">
+          <figure class="card-media">
+            <img src="assets/images/product-wireless-earbuds-animated.webp" alt="Wireless Bluetooth earbuds product shot" />
+          </figure>
           <div class="card-body">
             <p class="tag">Consumer Electronics</p>
             <h2>Wireless Bluetooth Earbuds</h2>
@@ -832,6 +878,10 @@
         card.style.transitionDelay = `${index * 90}ms`;
         observer.observe(card);
       });
+
+      window.setTimeout(() => {
+        cards.forEach((card) => card.classList.add("is-visible"));
+      }, 900);
     } else {
       cards.forEach((card) => card.classList.add("is-visible"));
     }

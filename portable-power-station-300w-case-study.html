@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amazon Listing Optimization Case Study - Portable Power Station 300W</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --page-bg: #f5f7fb;
@@ -397,9 +400,15 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/case-study.css" />
 </head>
 <body>
   <main class="page">
+    <nav class="case-nav" aria-label="Case study navigation">
+      <a class="case-brand" href="index.html">Listing Lab</a>
+      <a class="back-link" href="index.html">Back to Portfolio</a>
+    </nav>
+
     <section class="hero" aria-labelledby="page-title">
       <div>
         <p class="eyebrow">Amazon Listing Optimization Case Study</p>
@@ -408,27 +417,11 @@
       </div>
 
       <div class="icon-panel" aria-label="Portable power station output port icon area">
-        <svg class="station-svg" viewBox="0 0 220 170" role="img" aria-labelledby="station-title">
-          <title id="station-title">Portable power station silhouette with AC, USB-C, and DC ports</title>
-          <rect x="42" y="34" width="136" height="100" rx="14" fill="#1d2936"/>
-          <rect x="68" y="21" width="84" height="22" rx="10" fill="#2f4052"/>
-          <rect x="83" y="26" width="54" height="10" rx="5" fill="#f7fbff"/>
-          <rect x="58" y="52" width="66" height="28" rx="6" fill="#f7fbff"/>
-          <rect x="132" y="52" width="28" height="28" rx="14" fill="#f7fbff"/>
-          <circle cx="146" cy="66" r="6" fill="#16895f"/>
-          <circle cx="77" cy="66" r="6" fill="#1d2936"/>
-          <circle cx="105" cy="66" r="6" fill="#1d2936"/>
-          <rect x="59" y="94" width="24" height="12" rx="3" fill="#ffb703"/>
-          <rect x="91" y="94" width="24" height="12" rx="6" fill="#6fb6ff"/>
-          <rect x="123" y="94" width="34" height="12" rx="6" fill="#eaf8f1"/>
-          <text x="71" y="123" text-anchor="middle" fill="#f7fbff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">AC</text>
-          <text x="103" y="123" text-anchor="middle" fill="#f7fbff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">USB-C</text>
-          <text x="140" y="123" text-anchor="middle" fill="#f7fbff" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700">DC</text>
-          <path d="M178 88c14 6 22 18 22 32 0 18-13 32-31 35" fill="none" stroke="#16895f" stroke-width="6" stroke-linecap="round"/>
-          <path d="M181 73l14 17-22 2z" fill="#16895f"/>
-          <path d="M42 88c-14 6-22 18-22 32 0 18 13 32 31 35" fill="none" stroke="#d65a31" stroke-width="6" stroke-linecap="round"/>
-          <path d="M39 73L25 90l22 2z" fill="#d65a31"/>
-        </svg>
+        <img
+          class="product-image"
+          src="assets/images/product-portable-power-station-animated.webp"
+          alt="Portable power station with visible front ports"
+        />
       </div>
     </section>
 
