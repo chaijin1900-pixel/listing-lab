@@ -100,6 +100,79 @@
       padding: 34px 0 38px;
     }
 
+    .site-nav {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 58px;
+      margin-bottom: 22px;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 12, 22, 0.74);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav-brand {
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav-link,
+    .nav-tool {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 13px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      border-color: var(--line);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+      outline: none;
+    }
+
+    .nav-tool {
+      border-color: rgba(41, 151, 255, 0.62);
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(41, 151, 255, 0.96), rgba(0, 214, 143, 0.72));
+      box-shadow: 0 14px 38px rgba(41, 151, 255, 0.26);
+    }
+
+    .nav-tool:hover,
+    .nav-tool:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
     .hero {
       position: relative;
       display: grid;
@@ -251,6 +324,573 @@
 
     .portfolio {
       padding: 30px 0 86px;
+    }
+
+    .analyzer {
+      position: relative;
+      margin: 0 0 68px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.072), transparent 44%),
+        var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      isolation: isolate;
+    }
+
+    .analyzer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 16% 22%, rgba(41, 151, 255, 0.2), transparent 26%),
+        radial-gradient(circle at 88% 12%, rgba(0, 214, 143, 0.16), transparent 24%),
+        linear-gradient(115deg, rgba(139, 92, 246, 0.12), transparent 46%);
+      pointer-events: none;
+    }
+
+    .analyzer-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .analyzer h2 {
+      max-width: 720px;
+      margin: 0;
+      color: var(--white);
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.08;
+      text-wrap: balance;
+    }
+
+    .analyzer-copy {
+      max-width: 720px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+
+    .analyzer-status-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--faint);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .analyzer-status-card strong {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1rem;
+    }
+
+    .analyzer-status-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .analyzer-form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .analyzer-form label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .analyzer-form input {
+      width: 100%;
+      min-height: 56px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(0, 0, 0, 0.28);
+      padding: 0 20px;
+      font: inherit;
+      font-size: 0.98rem;
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .analyzer-form input::placeholder {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .analyzer-form input:focus {
+      border-color: rgba(41, 151, 255, 0.78);
+      box-shadow:
+        0 0 0 4px rgba(41, 151, 255, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .analyzer-submit {
+      min-width: 132px;
+      min-height: 56px;
+      border: 1px solid rgba(41, 151, 255, 0.92);
+      border-radius: 999px;
+      color: #ffffff;
+      background: var(--blue);
+      box-shadow: 0 16px 42px rgba(41, 151, 255, 0.28);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .analyzer-submit:hover:not(:disabled),
+    .analyzer-submit:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    .analyzer-submit:disabled {
+      cursor: not-allowed;
+      opacity: 0.68;
+    }
+
+    .sample-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .sample-row button {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.045);
+      padding: 7px 12px;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .sample-row button:hover,
+    .sample-row button:focus-visible {
+      border-color: rgba(41, 151, 255, 0.46);
+      color: var(--white);
+      outline: none;
+    }
+
+    .analyzer-message {
+      margin: 16px 0 0;
+      padding: 12px 14px;
+      border: 1px solid rgba(41, 151, 255, 0.24);
+      border-radius: 16px;
+      color: rgba(255, 255, 255, 0.82);
+      background: rgba(41, 151, 255, 0.09);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .analyzer-message.success {
+      border-color: rgba(0, 214, 143, 0.28);
+      color: #c9ffe9;
+      background: rgba(0, 214, 143, 0.1);
+    }
+
+    .analyzer-message.error {
+      border-color: rgba(255, 122, 69, 0.34);
+      color: #ffd5c4;
+      background: rgba(255, 122, 69, 0.1);
+    }
+
+    .analyzer-grid,
+    .insight-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .analyzer-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .insight-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 12px;
+    }
+
+    .scan-metric,
+    .scan-insight {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+      padding: 18px;
+      border: 1px solid var(--faint);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .scan-metric::before,
+    .scan-insight::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: var(--blue);
+    }
+
+    .scan-metric.green::before,
+    .scan-insight.green::before {
+      background: var(--green);
+    }
+
+    .scan-metric.purple::before,
+    .scan-insight.purple::before {
+      background: var(--purple);
+    }
+
+    .scan-metric.orange::before,
+    .scan-insight.orange::before {
+      background: #ff7a45;
+    }
+
+    .scan-metric strong,
+    .scan-insight strong {
+      display: block;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .scan-value {
+      margin-bottom: 8px;
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1.58rem;
+      font-weight: 800;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .scan-metric p,
+    .scan-insight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .distribution {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .distribution-row {
+      display: grid;
+      grid-template-columns: 78px minmax(72px, 1fr) 30px;
+      gap: 8px;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .bar-track {
+      overflow: hidden;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .bar-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--blue);
+    }
+
+    .bar-fill.high {
+      background: #ff7a45;
+    }
+
+    .bar-fill.medium {
+      background: var(--purple);
+    }
+
+    .bar-fill.low {
+      background: var(--green);
+    }
+
+    .scan-results {
+      margin-top: 24px;
+      scroll-margin-top: 92px;
+    }
+
+    .scan-results-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .scan-results-head h3 {
+      margin: 0;
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1.32rem;
+      letter-spacing: 0;
+    }
+
+    .result-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .result-count {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid rgba(41, 151, 255, 0.3);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(41, 151, 255, 0.1);
+    }
+
+    .product-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .scan-empty,
+    .scan-product,
+    .scan-skeleton {
+      border: 1px solid var(--faint);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .scan-empty {
+      display: grid;
+      min-height: 190px;
+      place-items: center;
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .scan-empty strong {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1.08rem;
+    }
+
+    .scan-product {
+      display: grid;
+      grid-template-columns: 48px 112px minmax(0, 1fr) minmax(220px, 260px);
+      gap: 16px;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .scan-rank {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--white);
+      background: rgba(41, 151, 255, 0.18);
+      font-size: 0.8rem;
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(41, 151, 255, 0.22);
+    }
+
+    .scan-image {
+      display: grid;
+      overflow: hidden;
+      width: 112px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid var(--faint);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .scan-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .scan-title {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 0 0 10px;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      color: var(--white);
+      font-size: 0.98rem;
+      font-weight: 800;
+      line-height: 1.38;
+    }
+
+    .scan-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .scan-tags span {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.065);
+      font-size: 0.74rem;
+      font-weight: 900;
+    }
+
+    .scan-tags .green {
+      color: #c9ffe9;
+      background: rgba(0, 214, 143, 0.11);
+    }
+
+    .scan-tags .purple {
+      color: #e8ddff;
+      background: rgba(139, 92, 246, 0.14);
+    }
+
+    .scan-tags .orange {
+      color: #ffd5c4;
+      background: rgba(255, 122, 69, 0.12);
+    }
+
+    .scan-tags .blue {
+      color: #d8ecff;
+      background: rgba(41, 151, 255, 0.13);
+    }
+
+    .scan-side {
+      min-width: 0;
+    }
+
+    .scan-product-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .scan-product-metric span {
+      display: block;
+      color: rgba(255, 255, 255, 0.46);
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .scan-product-metric strong {
+      display: block;
+      margin-top: 3px;
+      color: var(--white);
+      font-size: 0.95rem;
+      line-height: 1.28;
+      overflow-wrap: anywhere;
+    }
+
+    .rating-meter {
+      overflow: hidden;
+      height: 5px;
+      margin-top: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .rating-meter span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+    }
+
+    .scan-link {
+      display: inline-flex;
+      width: 100%;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      border: 1px solid rgba(41, 151, 255, 0.82);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(41, 151, 255, 0.92);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .scan-link:hover,
+    .scan-link:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    .scan-skeleton {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr) 240px;
+      gap: 16px;
+      padding: 14px;
+    }
+
+    .skeleton-block {
+      min-height: 18px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07));
+      background-size: 200% 100%;
+      animation: shimmer 1.2s linear infinite;
+    }
+
+    .skeleton-image {
+      width: 112px;
+      aspect-ratio: 1;
+    }
+
+    .skeleton-stack {
+      display: grid;
+      align-content: center;
+      gap: 10px;
     }
 
     .section-label {
@@ -518,9 +1158,58 @@
       }
     }
 
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
     @media (max-width: 980px) {
       .page {
         width: min(100% - 36px, 1180px);
+      }
+
+      .site-nav {
+        position: relative;
+        top: auto;
+      }
+
+      .analyzer-head,
+      .analyzer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .analyzer-head > div:first-child,
+      .insight-grid {
+        grid-column: 1 / -1;
+      }
+
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scan-product {
+        grid-template-columns: 46px 104px minmax(0, 1fr);
+      }
+
+      .scan-image {
+        width: 104px;
+      }
+
+      .scan-side {
+        grid-column: 2 / -1;
+      }
+
+      .scan-skeleton {
+        grid-template-columns: 104px minmax(0, 1fr);
+      }
+
+      .skeleton-image {
+        width: 104px;
       }
 
       .hero {
@@ -549,6 +1238,69 @@
       .page {
         width: min(100% - 28px, 1180px);
         padding: 24px 0 30px;
+      }
+
+      .site-nav {
+        align-items: flex-start;
+        flex-direction: column;
+        border-radius: 22px;
+        padding: 14px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .analyzer {
+        padding: 20px 16px;
+        border-radius: 20px;
+      }
+
+      .analyzer-head,
+      .analyzer-grid,
+      .analyzer-form {
+        grid-template-columns: 1fr;
+      }
+
+      .analyzer h2 {
+        font-size: 2rem;
+      }
+
+      .analyzer-submit {
+        width: 100%;
+      }
+
+      .scan-results-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .result-meta {
+        justify-content: flex-start;
+      }
+
+      .scan-product,
+      .scan-skeleton {
+        grid-template-columns: 1fr;
+      }
+
+      .scan-rank {
+        width: 100%;
+        height: 34px;
+      }
+
+      .scan-image,
+      .skeleton-image {
+        width: 100%;
+        max-height: 230px;
+      }
+
+      .scan-side {
+        grid-column: auto;
+      }
+
+      .scan-product-metrics {
+        grid-template-columns: 1fr;
       }
 
       .hero {
@@ -632,15 +1384,25 @@
       .project-card:hover,
       .project-card:focus-within,
       .card-action:hover,
-      .card-action:focus-visible {
+      .card-action:focus-visible,
+      .skeleton-block {
         transform: none;
+        animation: none;
       }
     }
   </style>
 </head>
 <body>
   <div class="cursor-glow" aria-hidden="true"></div>
-  <main class="page">
+  <main class="page" id="top">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="nav-brand" href="#top" aria-label="Listing Lab home">Listing Lab</a>
+      <div class="nav-links">
+        <a class="nav-link" href="#portfolio-title">Case Studies</a>
+        <a class="nav-tool" href="#amazon-analyzer">Amazon Competitor Analyzer</a>
+      </div>
+    </nav>
+
     <header class="hero" aria-label="Portfolio introduction">
       <div class="hero-aurora" aria-hidden="true"></div>
       <canvas class="particle-field" aria-hidden="true"></canvas>
@@ -654,6 +1416,55 @@
         </aside>
       </div>
     </header>
+
+    <section class="analyzer" id="amazon-analyzer" aria-labelledby="analyzer-title">
+      <div class="analyzer-head">
+        <div>
+          <p class="section-label">Live Research Tool</p>
+          <h2 id="analyzer-title">Amazon Market Scanner for listing strategy</h2>
+          <p class="analyzer-copy">Search a product keyword, pull live Amazon organic results through SerpApi, and scan price bands, ratings, review density, and the top competitors before writing copy.</p>
+          <form class="analyzer-form" id="analyzer-form">
+            <label for="analyzer-keyword">Product keyword</label>
+            <input id="analyzer-keyword" name="keyword" type="search" placeholder="electric bike helmet" autocomplete="off" required />
+            <button class="analyzer-submit" id="analyzer-submit" type="submit">Analyze</button>
+          </form>
+          <div class="sample-row" aria-label="Sample keywords">
+            <button type="button" data-analyzer-keyword="electric bike helmet">electric bike helmet</button>
+            <button type="button" data-analyzer-keyword="portable power station">portable power station</button>
+            <button type="button" data-analyzer-keyword="wireless earbuds">wireless earbuds</button>
+          </div>
+          <div class="analyzer-message" id="analyzer-message" role="status" hidden></div>
+        </div>
+        <aside class="analyzer-status-card" aria-label="API status">
+          <strong>Secure API route</strong>
+          <span>SerpApi key is read on the server only. The browser calls this site&rsquo;s own <code>/api/amazon-search</code> endpoint.</span>
+        </aside>
+      </div>
+
+      <div class="analyzer-grid" id="analyzer-summary" aria-label="Market summary"></div>
+      <div class="insight-grid" id="analyzer-insights" aria-label="Market insights"></div>
+
+      <div class="scan-results" id="analyzer-results">
+        <div class="scan-results-head">
+          <div>
+            <p class="section-label">Top 10</p>
+            <h3>Competitor Details</h3>
+          </div>
+          <div class="result-meta">
+            <span class="result-count" id="analyzer-result-count">Waiting for search</span>
+            <span id="analyzer-timestamp"></span>
+          </div>
+        </div>
+        <div class="product-list" id="analyzer-products">
+          <div class="scan-empty">
+            <div>
+              <strong>Enter a product keyword</strong>
+              <span>No competitor data yet.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="portfolio" aria-labelledby="portfolio-title">
       <p class="section-label" id="portfolio-title">Selected Case Studies</p>
@@ -886,5 +1697,6 @@
       cards.forEach((card) => card.classList.add("is-visible"));
     }
   </script>
+  <script src="assets/amazon-analyzer.js"></script>
 </body>
 </html>
