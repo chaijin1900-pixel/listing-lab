@@ -221,6 +221,44 @@
       opacity: 0.72;
     }
 
+    .hero .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      max-width: none;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 72%;
+      opacity: 0.78;
+      filter: saturate(1.25) brightness(1);
+      transform-origin: center 78%;
+      animation: cityDrift 30s ease-in-out infinite alternate;
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 62% 46% at 50% 42%, rgba(0, 0, 0, 0.42), transparent 78%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.22) 34%, rgba(3, 7, 18, 0.12) 66%, rgba(0, 0, 0, 0.85) 100%);
+    }
+
+    @keyframes cityDrift {
+      from {
+        transform: scale(1.07) translateX(-1.1%);
+      }
+      to {
+        transform: scale(1.17) translateX(1.1%);
+      }
+    }
+
     .hero > div {
       position: relative;
       z-index: 1;
@@ -1374,6 +1412,10 @@
         animation: none;
       }
 
+      .hero-photo img {
+        animation: none;
+      }
+
       .project-card,
       .project-card::before,
       .card-action {
@@ -1406,6 +1448,9 @@
     <header class="hero" aria-label="Portfolio introduction">
       <div class="hero-aurora" aria-hidden="true"></div>
       <canvas class="particle-field" aria-hidden="true"></canvas>
+      <div class="hero-photo" aria-hidden="true">
+        <img src="assets/images/hero-city-skyline.jpg" alt="" decoding="async" />
+      </div>
       <div>
         <p class="brand">Listing Lab</p>
         <h1 id="hero-title">Amazon Listing Optimization &mdash; Before &amp; After Case Studies</h1>

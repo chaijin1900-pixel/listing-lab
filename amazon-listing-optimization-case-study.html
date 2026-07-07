@@ -10,50 +10,43 @@
   <link rel="stylesheet" href="assets/case-study.css" />
 </head>
 <body>
-  <main class="app">
+  <main class="page">
     <nav class="case-nav" aria-label="Case study navigation">
       <a class="case-brand" href="index.html">Listing Lab</a>
       <a class="back-link" href="index.html">Back to Portfolio</a>
     </nav>
 
-    <section class="topbar" aria-labelledby="page-title">
+    <section class="hero" aria-labelledby="page-title">
       <div>
         <p class="eyebrow">Amazon Listing Optimization Case Study</p>
         <h1 id="page-title">18650 Rechargeable Battery Kit</h1>
-        <p class="subtitle">
-          A portfolio-ready comparison showing how vague commodity copy becomes a searchable,
-          safety-aware product listing with stronger buyer confidence signals.
-        </p>
+        <p class="subtitle">A side-by-side listing rewrite showing how vague commodity copy becomes a searchable, safety-aware product listing with stronger buyer confidence signals.</p>
       </div>
 
-      <aside class="product-visual" aria-label="Product kit visual">
+      <div class="icon-panel" aria-label="Product kit visual">
         <img
           class="product-image"
           src="assets/images/product-18650-battery-kit-animated.webp"
           alt="18650 rechargeable battery kit with charger and storage case"
         />
-      </aside>
+      </div>
     </section>
 
-    <section class="comparison" aria-label="Before and after listing comparison">
+    <section class="comparison" aria-label="Before and after Amazon listing comparison">
       <article class="listing-card before">
         <header class="card-header">
-          <div>
-            <p class="label">Before</p>
-            <h2>Bad Listing</h2>
-          </div>
-          <span class="score">Low conversion risk</span>
+          <p class="status-label">BEFORE</p>
+          <div class="score">Weak Listing</div>
         </header>
-
         <div class="listing-body">
           <section class="section">
-            <h3 class="section-title">Title</h3>
-            <p class="listing-title">18650 Battery 4 Pack Rechargeable</p>
+            <p class="section-title">Title</p>
+            <p class="product-title">18650 Battery 4 Pack Rechargeable</p>
           </section>
 
           <section class="section">
-            <h3 class="section-title">Bullet Points</h3>
-            <ul class="bullets">
+            <p class="section-title">Bullet Points</p>
+            <ul>
               <li>Rechargeable batteries for everyday use.</li>
               <li>Works with many devices.</li>
               <li>Long lasting and easy to charge.</li>
@@ -62,76 +55,83 @@
           </section>
 
           <section class="section">
-            <h3 class="section-title">Description</h3>
-            <div class="description">
-              <p>These batteries are rechargeable and can be used in many devices.</p>
-              <p>They are easy to carry and good for home or travel.</p>
-            </div>
+            <p class="section-title">Description</p>
+            <p class="description">These batteries are rechargeable and can be used in many devices.</p>
+            <p class="description">They are easy to carry and good for home or travel.</p>
           </section>
+
+          <div class="warning-row" aria-label="Before listing weaknesses">
+            <div class="metric">No Capacity</div>
+            <div class="metric">No Safety Info</div>
+            <div class="metric">No Compatibility</div>
+          </div>
         </div>
       </article>
 
       <article class="listing-card after">
         <header class="card-header">
-          <div>
-            <p class="label">After</p>
-            <h2>Optimized Listing</h2>
-          </div>
-          <span class="score">Search and trust optimized</span>
+          <p class="status-label">AFTER</p>
+          <div class="score">Optimized</div>
         </header>
-
         <div class="listing-body">
           <section class="section">
-            <h3 class="section-title">Title</h3>
-            <p class="listing-title">[Brand] 18650 Rechargeable Battery Kit, 4 Pack 3500mAh Li-ion Batteries with 4-Slot Smart Charger, UN38.3 Certified Button Top Cells for Flashlights, Vape Mods, Solar Lights</p>
+            <p class="section-title">Title</p>
+            <p class="product-title">18650 Rechargeable Battery Kit, 4 Pack 3500mAh Li-ion Batteries with 4-Slot Smart Charger, UN38.3 Certified Button Top Cells for Flashlights, Vape Mods, Solar Lights</p>
           </section>
 
           <section class="section">
-            <h3 class="section-title">Bullet Points</h3>
-            <ul class="bullets">
-              <li><strong>CAPACITY:</strong> Four 3500mAh 3.7V lithium-ion 18650 button-top batteries deliver steady runtime for high-drain flashlights, headlamps, fans, solar garden lights, and compatible regulated vape devices.</li>
-              <li><strong>SAFETY:</strong> UN38.3 transport-tested cells and a smart charger with overcharge, short-circuit, reverse-polarity, and temperature protection help reduce common charging and storage concerns.</li>
-              <li><strong>COMPATIBILITY:</strong> Standard 18mm x 65mm 18650 format fits devices that require button-top Li-ion cells; buyers should confirm device manual, polarity, voltage, and protected-cell clearance before use.</li>
-              <li><strong>CHARGING:</strong> Independent 4-slot USB-C charger monitors each cell separately with LED status indicators, auto shutoff at full charge, and trickle-free charging for safer overnight prep.</li>
-              <li><strong>INCLUDED:</strong> Kit includes 4 rechargeable 18650 batteries, 4-bay charger, USB-C cable, hard storage case, and quick safety guide for travel, home backup, and outdoor gear organization.</li>
+            <p class="section-title">Bullet Points</p>
+            <ul>
+              <li><span class="keyword">CAPACITY:</span> Four 3500mAh 3.7V lithium-ion 18650 button-top batteries deliver steady runtime for high-drain flashlights, headlamps, fans, solar garden lights, and compatible regulated vape devices.</li>
+              <li><span class="keyword">SAFETY:</span> UN38.3 transport-tested cells and a smart charger with overcharge, short-circuit, reverse-polarity, and temperature protection help reduce common charging and storage concerns.</li>
+              <li><span class="keyword">COMPATIBILITY:</span> Standard 18mm x 65mm 18650 format fits devices that require button-top Li-ion cells; buyers should confirm device manual, polarity, voltage, and protected-cell clearance before use.</li>
+              <li><span class="keyword">CHARGING:</span> Independent 4-slot USB-C charger monitors each cell separately with LED status indicators, auto shutoff at full charge, and trickle-free charging for safer overnight prep.</li>
+              <li><span class="keyword">INCLUDED:</span> Kit includes 4 rechargeable 18650 batteries, 4-bay charger, USB-C cable, hard storage case, and quick safety guide for travel, home backup, and outdoor gear organization.</li>
             </ul>
           </section>
 
           <section class="section">
-            <h3 class="section-title">Description</h3>
-            <div class="description">
-              <p>Upgrade power-hungry gear with the [Brand] 18650 rechargeable battery kit, built for buyers who need dependable backup cells for flashlights, tactical lights, headlamps, solar pathway lights, portable fans, and compatible regulated vape mods. Each 3500mAh 3.7V Li-ion cell is designed to provide consistent output across repeated charge cycles while reducing disposable battery waste.</p>
-              <p>The included 4-slot smart charger manages every battery independently, so mixed charge levels can be topped off at the same time. LED indicators show charge progress at a glance, while built-in overcharge, short-circuit, reverse-polarity, and temperature protections help address the safety questions shoppers often have when buying 18650 batteries online.</p>
-              <p>This kit arrives ready to organize and store, with four button-top 18650 cells, a USB-C charging cable, a hard case, and a concise safety guide. For best results, confirm that your device supports 3.7V Li-ion 18650 button-top batteries and follow the manufacturer's charging, storage, and disposal instructions.</p>
-            </div>
+            <p class="section-title">Description</p>
+            <p class="description">Upgrade power-hungry gear with this 18650 rechargeable battery kit, built for buyers who need dependable backup cells for flashlights, tactical lights, headlamps, solar pathway lights, portable fans, and compatible regulated vape mods. Each 3500mAh 3.7V Li-ion cell is designed to provide consistent output across repeated charge cycles while reducing disposable battery waste.</p>
+            <p class="description">The included 4-slot smart charger manages every battery independently, so mixed charge levels can be topped off at the same time. LED indicators show charge progress at a glance, while built-in overcharge, short-circuit, reverse-polarity, and temperature protections help address the safety questions shoppers often have when buying 18650 batteries online.</p>
+            <p class="description">This kit arrives ready to organize and store, with four button-top 18650 cells, a USB-C charging cable, a hard case, and a concise safety guide. For best results, confirm that your device supports 3.7V Li-ion 18650 button-top batteries and follow the manufacturer's charging, storage, and disposal instructions.</p>
           </section>
+
+          <div class="win-row" aria-label="After listing strengths">
+            <div class="metric">Specs Clear</div>
+            <div class="metric">Safety Addressed</div>
+            <div class="metric">Kit Contents Listed</div>
+          </div>
         </div>
       </article>
     </section>
 
-    <section class="key-improvements" aria-labelledby="improvements-title">
+    <section class="improvements" aria-labelledby="improvements-title">
       <h2 id="improvements-title">Key Improvements</h2>
       <div class="improvement-grid">
         <div class="improvement">
-          <strong>Search Coverage</strong>
-          <span>Added capacity, pack size, charger, cell type, and primary use-case keywords.</span>
+          <b>Search Relevance</b>
+          <span>Title now includes capacity, pack size, charger, cell type, and primary use-case keywords like flashlights and solar lights.</span>
         </div>
         <div class="improvement">
-          <strong>Buyer Trust</strong>
-          <span>Named UN38.3 testing and specific charger protections instead of vague quality claims.</span>
+          <b>Purchase Confidence</b>
+          <span>Bullets name UN38.3 testing and specific charger protections instead of vague quality claims.</span>
         </div>
         <div class="improvement">
-          <strong>Conversion Detail</strong>
-          <span>Clarified compatibility, dimensions, voltage, and button-top fit requirements.</span>
+          <b>Conversion Clarity</b>
+          <span>Compatibility, dimensions, voltage, and button-top fit requirements are spelled out so shoppers can evaluate device fit quickly.</span>
         </div>
         <div class="improvement">
-          <strong>Offer Clarity</strong>
-          <span>Listed the exact kit contents so shoppers know what arrives in the box.</span>
+          <b>Reduced Returns</b>
+          <span>Exact kit contents and device-check guidance set accurate expectations before purchase.</span>
         </div>
-        <div class="improvement">
-          <strong>Concern Handling</strong>
-          <span>Used professional description copy to answer safety, storage, and device-fit questions.</span>
-        </div>
+      </div>
+      <div class="tag-row" aria-label="Optimization tags">
+        <span class="tag">Keyword-Rich Title</span>
+        <span class="tag">Safety Signals</span>
+        <span class="tag">Compatibility Clarity</span>
+        <span class="tag">Complete Kit Contents</span>
+        <span class="tag">Mobile Responsive</span>
       </div>
     </section>
   </main>
