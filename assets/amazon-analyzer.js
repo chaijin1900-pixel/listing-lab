@@ -23,7 +23,81 @@ const compactFormatter = new Intl.NumberFormat("en-US", {
 
 let currentAnalyzerRequest = null;
 
-renderAnalyzerStart();
+const EXAMPLE_KEYWORD = "portable power station";
+const EXAMPLE_DATA = {
+  keyword: EXAMPLE_KEYWORD,
+  summary: {
+    total: 5,
+    price: { min: 149.5, max: 219, average: 181.5, count: 5 },
+    averageRating: 4.48,
+    ratingCount: 5,
+    reviewDistribution: { high: 2, medium: 2, low: 1, unknown: 0 },
+  },
+  products: [
+    {
+      position: 1,
+      title: "Example Listing A — Portable Power Station 296Wh Solar Generator",
+      price: "$179.99",
+      priceValue: 179.99,
+      rating: 4.6,
+      reviews: 3200,
+      link: null,
+      thumbnail: null,
+      asin: null,
+      isSponsored: false,
+    },
+    {
+      position: 2,
+      title: "Example Listing B — 300W Portable Power Station with AC Outlet",
+      price: "$159.00",
+      priceValue: 159,
+      rating: 4.4,
+      reviews: 850,
+      link: null,
+      thumbnail: null,
+      asin: null,
+      isSponsored: false,
+    },
+    {
+      position: 3,
+      title: "Example Listing C — Compact Power Station for Camping & Home Backup",
+      price: "$199.99",
+      priceValue: 199.99,
+      rating: 4.7,
+      reviews: 12000,
+      link: null,
+      thumbnail: null,
+      asin: null,
+      isSponsored: false,
+    },
+    {
+      position: 4,
+      title: "Example Listing D — Portable Solar Generator 288Wh",
+      price: "$149.50",
+      priceValue: 149.5,
+      rating: 4.2,
+      reviews: 420,
+      link: null,
+      thumbnail: null,
+      asin: null,
+      isSponsored: false,
+    },
+    {
+      position: 5,
+      title: "Example Listing E — Backup Battery Power Station 300W",
+      price: "$219.00",
+      priceValue: 219,
+      rating: 4.5,
+      reviews: 60,
+      link: null,
+      thumbnail: null,
+      asin: null,
+      isSponsored: false,
+    },
+  ],
+};
+
+renderExampleResults();
 
 analyzerSamples.forEach((button) => {
   button.addEventListener("click", () => {
@@ -119,21 +193,15 @@ function shortText(value, length = 54) {
   return text.length > length ? `${text.slice(0, length - 1)}...` : text;
 }
 
-function renderAnalyzerStart() {
-  analyzerSummary.innerHTML = `
-    ${metricCard("Competitors", "--", "organic_results count", "blue")}
-    ${metricCard("Price Range", "--", "min - max / average", "green")}
-    ${metricCard("Avg. Rating", "--", "rating coverage", "purple")}
-    ${reviewDistributionCard({ high: 0, medium: 0, low: 0, unknown: 0 })}
-  `;
-  analyzerInsights.innerHTML = `
-    ${insightCard("Entry Price", "--", "Lowest observed price", "green")}
-    ${insightCard("Review Barrier", "--", "1000+ review products", "orange")}
-    ${insightCard("Top Review Leader", "--", "Highest review count", "blue")}
-  `;
+function renderExampleResults() {
+  renderAnalyzerResults(EXAMPLE_DATA);
+  analyzerResultCount.textContent = `Example results for "${EXAMPLE_KEYWORD}"`;
+  analyzerResultCount.classList.add("example");
+  analyzerTimestamp.textContent = "Run a search above for live data";
 }
 
 function renderAnalyzerLoading() {
+  analyzerResultCount.classList.remove("example");
   analyzerResultCount.textContent = "Scanning";
   analyzerTimestamp.textContent = "";
   analyzerSummary.innerHTML = Array.from({ length: 4 })

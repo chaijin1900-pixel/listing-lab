@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Listing Lab | Amazon Listing Optimization Portfolio</title>
+  <meta name="description" content="Amazon listing optimization portfolio: before &amp; after case studies showing keyword coverage, bullet restructuring, and buyer-confidence copy improvements for electronics, energy, and consumer tech listings." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Listing Lab | Amazon Listing Optimization Portfolio" />
+  <meta property="og:description" content="Before &amp; after Amazon listing case studies with quantified optimization metrics for electronics, energy, and consumer tech products." />
+  <meta property="og:image" content="https://listing-lab-delta.vercel.app/assets/images/hero-city-skyline.jpg" />
+  <meta property="og:url" content="https://listing-lab-delta.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://listing-lab-delta.vercel.app/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -341,14 +349,15 @@
       min-height: 40px;
       align-items: center;
       gap: 9px;
-      width: fit-content;
+      max-width: 100%;
       padding: 9px 15px;
       border: 1px solid rgba(41, 151, 255, 0.34);
       border-radius: 999px;
       color: var(--white);
       background: var(--blue-soft);
       box-shadow: 0 0 32px rgba(41, 151, 255, 0.16);
-      white-space: nowrap;
+      white-space: normal;
+      text-align: left;
       backdrop-filter: blur(18px);
     }
 
@@ -719,6 +728,12 @@
       border-radius: 999px;
       color: var(--white);
       background: rgba(41, 151, 255, 0.1);
+    }
+
+    .result-count.example {
+      border-color: rgba(255, 122, 69, 0.36);
+      color: #ffd5c4;
+      background: rgba(255, 122, 69, 0.12);
     }
 
     .product-list {
@@ -1143,8 +1158,97 @@
       outline: none;
     }
 
+    .portfolio-disclaimer {
+      margin: -14px 0 24px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .methodology,
+    .tooling {
+      margin-top: 56px;
+    }
+
+    .process-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 20px 16px;
+    }
+
+    .process-step {
+      flex: 1 1 200px;
+      min-width: 0;
+    }
+
+    .process-step strong {
+      display: block;
+      margin: 0 0 6px;
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .process-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .process-arrow {
+      align-self: center;
+      padding-top: 24px;
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .process-arrow .arrow-v {
+      display: none;
+    }
+
+    .tool-list {
+      display: grid;
+      gap: 4px;
+    }
+
+    .tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--faint);
+      font-size: 0.94rem;
+    }
+
+    .tool-row:last-child {
+      border-bottom: 0;
+    }
+
+    .tool-name {
+      flex: 0 0 auto;
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-weight: 800;
+    }
+
+    .tool-arrow {
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .tool-desc {
+      color: var(--muted);
+    }
+
     .footer {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 18px;
       padding: 28px 0 4px;
@@ -1156,6 +1260,18 @@
     .footer strong {
       color: rgba(255, 255, 255, 0.9);
       font-weight: 700;
+    }
+
+    .footer-block {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-location {
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
     @keyframes meshShift {
@@ -1396,6 +1512,37 @@
       .footer {
         flex-direction: column;
       }
+
+      .methodology,
+      .tooling {
+        margin-top: 44px;
+      }
+
+      .process-flow {
+        flex-direction: column;
+      }
+
+      .process-step {
+        flex: none;
+      }
+
+      .process-arrow {
+        align-self: flex-start;
+        padding-top: 0;
+      }
+
+      .process-arrow .arrow-h {
+        display: none;
+      }
+
+      .process-arrow .arrow-v {
+        display: inline;
+      }
+
+      .tool-row {
+        flex-direction: column;
+        gap: 2px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1456,7 +1603,7 @@
         <h1 id="hero-title">Amazon Listing Optimization &mdash; Before &amp; After Case Studies</h1>
         <p class="subtitle">Specialist in electronics, energy, and consumer tech listings with a focus on buyer intent, benefit-led copy, and conversion-ready detail structure.</p>
         <aside class="specialty" aria-label="Availability">
-          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Available for projects</span>
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Open to full-time cross-border e-commerce operations roles</span>
           <span>Electronics / Energy / Consumer Tech</span>
         </aside>
       </div>
@@ -1513,6 +1660,7 @@
 
     <section class="portfolio" aria-labelledby="portfolio-title">
       <p class="section-label" id="portfolio-title">Selected Case Studies</p>
+      <p class="portfolio-disclaimer">Methodology case studies &middot; simulated listing data, not live sales results</p>
       <div class="project-grid" id="portfolio-cards">
         <article class="project-card">
           <figure class="card-media">
@@ -1529,7 +1677,7 @@
               </div>
               <div class="metric">
                 <span>Outcome</span>
-                <strong>Sharper value story</strong>
+                <strong>Title keyword coverage: 3 &rarr; 9 search intents</strong>
               </div>
             </div>
             <a class="card-action" href="amazon-listing-optimization-case-study.html" aria-label="View case study for 18650 Rechargeable Battery Kit">View Case Study &rarr;</a>
@@ -1551,7 +1699,7 @@
               </div>
               <div class="metric">
                 <span>Outcome</span>
-                <strong>Clearer buying path</strong>
+                <strong>Bullets restructured: 4 generic claims &rarr; 5 spec-backed bullets</strong>
               </div>
             </div>
             <a class="card-action" href="portable-power-station-300w-case-study.html" aria-label="View case study for Portable Power Station 300W">View Case Study &rarr;</a>
@@ -1573,7 +1721,7 @@
               </div>
               <div class="metric">
                 <span>Outcome</span>
-                <strong>Faster scanability</strong>
+                <strong>Numeric specs disclosed: 0 &rarr; 6 quantified claims</strong>
               </div>
             </div>
             <a class="card-action" href="wireless-bluetooth-earbuds-case-study.html" aria-label="View case study for Wireless Bluetooth Earbuds">View Case Study &rarr;</a>
@@ -1582,8 +1730,57 @@
       </div>
     </section>
 
+    <section class="methodology" aria-labelledby="methodology-title">
+      <p class="section-label" id="methodology-title">Methodology</p>
+      <div class="process-flow">
+        <div class="process-step">
+          <strong>Keyword &amp; competitor research</strong>
+          <span>Pull live competitor listings and search terms to see what buyers are actually searching for.</span>
+        </div>
+        <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
+        <div class="process-step">
+          <strong>Buyer intent mapping</strong>
+          <span>Group findings into the specific questions and objections a buyer has before adding to cart.</span>
+        </div>
+        <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
+        <div class="process-step">
+          <strong>Copy restructure</strong>
+          <span>Rewrite title, bullets, and description around those intents with specific, checkable claims.</span>
+        </div>
+        <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
+        <div class="process-step">
+          <strong>Metrics review</strong>
+          <span>Compare before/after coverage of keywords, specs, and objections addressed to confirm the rewrite worked.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tooling" aria-labelledby="tooling-title">
+      <p class="section-label" id="tooling-title">Tooling</p>
+      <div class="tool-list">
+        <div class="tool-row">
+          <span class="tool-name">Claude Code</span>
+          <span class="tool-arrow" aria-hidden="true">&rarr;</span>
+          <span class="tool-desc">site build &amp; iteration</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">SerpApi</span>
+          <span class="tool-arrow" aria-hidden="true">&rarr;</span>
+          <span class="tool-desc">live Amazon competitor data powering the Scanner above</span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-name">n8n</span>
+          <span class="tool-arrow" aria-hidden="true">&rarr;</span>
+          <span class="tool-desc">automation workflows, e.g. competitor monitoring</span>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
-      <strong>Available for listing optimization projects</strong>
+      <div class="footer-block">
+        <strong>Open to full-time cross-border e-commerce operations roles</strong>
+        <span class="footer-location">Based in Jiangxi, China &middot; Available for on-site roles in Dongguan / Shenzhen</span>
+      </div>
       <span>WeChat: Cnn7c7</span>
     </footer>
   </main>
