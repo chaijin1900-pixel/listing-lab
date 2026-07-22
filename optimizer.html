@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listing Lab | AI Listing Optimizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000000;
+      --blue: #2997ff;
+      --green: #00d68f;
+      --white: #ffffff;
+      --muted: rgba(255, 255, 255, 0.58);
+      --faint: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.04);
+      --line: rgba(255, 255, 255, 0.1);
+      --opt: #00d68f;
+      --opt-soft: rgba(0, 214, 143, 0.07);
+      --opt-line: rgba(0, 214, 143, 0.24);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--white);
+      background: linear-gradient(160deg, #000000 0%, #030712 46%, #0a0f1a 100%);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.4;
+      background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 150px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 150px);
+      background-size: 150px 150px, 150px 150px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1020px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 34px 0 60px;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 58px;
+      margin-bottom: 40px;
+      padding: 10px 12px 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 12, 22, 0.74);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav-brand {
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav-link,
+    .nav-tool {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 13px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      border-color: var(--line);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+      outline: none;
+    }
+
+    .nav-tool {
+      border-color: rgba(41, 151, 255, 0.62);
+      color: var(--white);
+      background: linear-gradient(135deg, rgba(41, 151, 255, 0.96), rgba(0, 214, 143, 0.72));
+      box-shadow: 0 14px 38px rgba(41, 151, 255, 0.26);
+    }
+
+    .nav-tool:hover,
+    .nav-tool:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    /* ---------- Intro ---------- */
+    .intro {
+      max-width: 640px;
+      margin: 0 0 26px;
+    }
+
+    .section-label {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .intro h1 {
+      margin: 0;
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .intro p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ---------- Form card ---------- */
+    .card {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--glass);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .optimizer-form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 9px;
+    }
+
+    .field-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .field-label .optional {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .char-count {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .char-count.limit {
+      color: #ffd5c4;
+    }
+
+    textarea,
+    .field input {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--white);
+      background: rgba(0, 0, 0, 0.3);
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 190px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    .field input {
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+    }
+
+    textarea::placeholder,
+    .field input::placeholder {
+      color: rgba(255, 255, 255, 0.36);
+    }
+
+    textarea:focus,
+    .field input:focus {
+      border-color: rgba(41, 151, 255, 0.7);
+      box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.14);
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .submit-btn {
+      min-width: 160px;
+      min-height: 52px;
+      padding: 0 26px;
+      border: 1px solid rgba(41, 151, 255, 0.92);
+      border-radius: 999px;
+      color: #ffffff;
+      background: var(--blue);
+      box-shadow: 0 14px 36px rgba(41, 151, 255, 0.26);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover:not(:disabled),
+    .submit-btn:focus-visible {
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    .submit-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.66;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .secure-note {
+      margin: 2px 0 0;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .message {
+      margin: 4px 0 0;
+      padding: 12px 14px;
+      border: 1px solid rgba(41, 151, 255, 0.24);
+      border-radius: 14px;
+      color: rgba(255, 255, 255, 0.82);
+      background: rgba(41, 151, 255, 0.09);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .message.error {
+      border-color: rgba(255, 122, 69, 0.34);
+      color: #ffd5c4;
+      background: rgba(255, 122, 69, 0.1);
+    }
+
+    .message.success {
+      border-color: var(--opt-line);
+      color: #c9ffe9;
+      background: var(--opt-soft);
+    }
+
+    /* ---------- Results ---------- */
+    .results {
+      margin-top: 30px;
+    }
+
+    .results[hidden] {
+      display: none;
+    }
+
+    .results h2 {
+      margin: 0 0 4px;
+      font-family: Sora, Inter, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .results-sub {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .cmp {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .cmp-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Column headers — rendered once at the top of the comparison. */
+    .cmp-heads {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cmp-heads .head {
+      padding: 12px 18px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .cmp-heads .head.opt {
+      color: var(--opt);
+      background: var(--opt-soft);
+      border-left: 1px solid var(--line);
+    }
+
+    .cmp-section + .cmp-section {
+      border-top: 1px solid var(--line);
+    }
+
+    .cmp-label {
+      margin: 0;
+      padding: 12px 18px 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .cmp-section .cmp-pair {
+      align-items: stretch;
+    }
+
+    .cell {
+      padding: 14px 18px 18px;
+      min-width: 0;
+    }
+
+    .cell.opt {
+      border-left: 1px solid var(--line);
+      background: var(--opt-soft);
+    }
+
+    .cell p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+
+    .cell ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cell li {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .cell.src p,
+    .cell.src li {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .rationale {
+      display: block;
+      margin-top: 7px;
+      color: rgba(0, 214, 143, 0.82);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .rationale::before {
+      content: "\2192  ";
+      opacity: 0.8;
+    }
+
+    .rationale[hidden] {
+      display: none;
+    }
+
+    /* Keywords — full width, no before/after split. */
+    .kw-block {
+      padding: 14px 18px 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .kw-block .cmp-label {
+      padding: 0 0 12px;
+    }
+
+    .keyword-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .keyword-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--opt-line);
+      background: var(--opt-soft);
+      color: #a9f0d3;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 720px) {
+      .intro h1 {
+        font-size: 1.9rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      /* Stack columns; color (green = optimized) carries the distinction. */
+      .cmp-heads {
+        display: none;
+      }
+
+      .cmp-section .cmp-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .cell.opt {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" id="top">
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="nav-brand" href="index.html" aria-label="Listing Lab home">Listing Lab</a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html#portfolio-title">Case Studies</a>
+        <a class="nav-link" href="index.html#amazon-analyzer">Competitor Analyzer</a>
+        <a class="nav-tool" href="optimizer.html" aria-current="page">AI Listing Optimizer</a>
+      </div>
+    </nav>
+
+    <header class="intro">
+      <p class="section-label">AI Copy Tool</p>
+      <h1>Listing 优化器</h1>
+      <p>粘贴 Listing 原文，DeepSeek 会重写出关键词更丰富、卖点更清晰的版本，并逐条说明修改理由。</p>
+    </header>
+
+    <section class="card" aria-label="优化表单">
+      <form class="optimizer-form" id="optimizer-form">
+        <div class="field">
+          <label class="field-label" for="listing-input">
+            <span>Listing 原文</span>
+            <span class="char-count" id="char-count">0 / 3000</span>
+          </label>
+          <textarea id="listing-input" name="listing" placeholder="第一行填标题，之后每行一条五点描述，例如：&#10;Wireless Earbuds Bluetooth Headphones&#10;- Great sound for music and calls&#10;- Comfortable for daily use&#10;- Easy to connect&#10;- Long battery life&#10;- Comes with charging case" required></textarea>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label class="field-label" for="category-input">
+              <span>品类</span>
+              <span class="optional">可选</span>
+            </label>
+            <input id="category-input" name="category" type="text" placeholder="Consumer Electronics" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="keywords-input">
+              <span>目标关键词</span>
+              <span class="optional">可选 · 逗号分隔</span>
+            </label>
+            <input id="keywords-input" name="keywords" type="text" placeholder="wireless earbuds, bluetooth, ANC" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="submit-btn" id="submit-btn" type="submit">优化 Listing</button>
+          <span class="hint">首次调用模型可能需要 10–20 秒。</span>
+        </div>
+
+        <p class="secure-note">API key 仅在服务端读取，不会发送到浏览器 · 演示额度每 IP 每天 3 次。</p>
+
+        <div class="message" id="message" role="status" hidden></div>
+      </form>
+    </section>
+
+    <section class="results" id="results" hidden aria-live="polite">
+      <h2>优化结果</h2>
+      <p class="results-sub">左侧为原文，右侧为优化后，修改理由以绿色小字标注。</p>
+
+      <div class="cmp">
+        <div class="cmp-pair cmp-heads">
+          <span class="head">原文</span>
+          <span class="head opt">优化后</span>
+        </div>
+
+        <div class="cmp-section">
+          <p class="cmp-label">标题</p>
+          <div class="cmp-pair">
+            <div class="cell src">
+              <p id="title-before"></p>
+            </div>
+            <div class="cell opt">
+              <p id="title-after"></p>
+              <span class="rationale" id="title-rationale" hidden></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmp-section">
+          <p class="cmp-label">五点描述</p>
+          <div class="cmp-pair">
+            <div class="cell src">
+              <ul id="bullets-before"></ul>
+            </div>
+            <div class="cell opt">
+              <ul id="bullets-after"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="kw-block">
+          <p class="cmp-label">建议关键词</p>
+          <div class="keyword-row" id="keywords-out"></div>
+          <span class="rationale" id="keywords-rationale" hidden></span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Listing Lab · AI Listing Optimizer</span>
+      <span>Powered by DeepSeek · 演示用途</span>
+    </footer>
+  </main>
+
+  <script src="assets/optimizer.js" defer></script>
+</body>
+</html>

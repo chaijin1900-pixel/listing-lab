@@ -3,6 +3,7 @@ const { existsSync, readFileSync } = require("node:fs");
 const { readFile } = require("node:fs/promises");
 const path = require("node:path");
 const amazonSearch = require("./api/amazon-search.js");
+const optimizeListing = require("./api/optimize-listing.js");
 
 const rootDir = __dirname;
 const defaultPort = Number.parseInt(process.env.PORT || "5175", 10);
@@ -79,6 +80,11 @@ function createRequestHandler() {
 
     if (requestUrl.pathname === "/api/amazon-search") {
       await amazonSearch(request, response);
+      return;
+    }
+
+    if (requestUrl.pathname === "/api/optimize-listing") {
+      await optimizeListing(request, response);
       return;
     }
 
