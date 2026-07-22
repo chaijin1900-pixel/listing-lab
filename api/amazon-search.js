@@ -190,11 +190,12 @@ async function handler(request, response) {
     const payload = await serpResponse.json().catch(() => ({}));
 
     if (!serpResponse.ok || payload.error) {
+      // Only forward SerpApi's error string; never relay the raw upstream payload.
       return sendError(
         response,
         serpResponse.status || 502,
         "SerpApi request failed.",
-        payload.error || payload,
+        typeof payload.error === "string" ? payload.error : undefined,
       );
     }
 
