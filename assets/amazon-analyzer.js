@@ -10,13 +10,13 @@ const analyzerResultCount = document.querySelector("#analyzer-result-count");
 const analyzerTimestamp = document.querySelector("#analyzer-timestamp");
 const analyzerSamples = document.querySelectorAll("[data-analyzer-keyword]");
 
-const usdFormatter = new Intl.NumberFormat("en-US", {
+const usdFormatter = new Intl.NumberFormat("zh-CN", {
   style: "currency",
   currency: "USD",
   maximumFractionDigits: 2,
 });
 
-const compactFormatter = new Intl.NumberFormat("en-US", {
+const compactFormatter = new Intl.NumberFormat("zh-CN", {
   notation: "compact",
   maximumFractionDigits: 1,
 });
@@ -36,7 +36,7 @@ const EXAMPLE_DATA = {
   products: [
     {
       position: 1,
-      title: "Example Listing A — Portable Power Station 296Wh Solar Generator",
+      title: "示例 Listing A — 296Wh 便携式太阳能储能电源",
       price: "$179.99",
       priceValue: 179.99,
       rating: 4.6,
@@ -48,7 +48,7 @@ const EXAMPLE_DATA = {
     },
     {
       position: 2,
-      title: "Example Listing B — 300W Portable Power Station with AC Outlet",
+      title: "示例 Listing B — 带交流插座的 300W 便携式储能电源",
       price: "$159.00",
       priceValue: 159,
       rating: 4.4,
@@ -60,7 +60,7 @@ const EXAMPLE_DATA = {
     },
     {
       position: 3,
-      title: "Example Listing C — Compact Power Station for Camping & Home Backup",
+      title: "示例 Listing C — 适合露营与家庭备电的紧凑型储能电源",
       price: "$199.99",
       priceValue: 199.99,
       rating: 4.7,
@@ -72,7 +72,7 @@ const EXAMPLE_DATA = {
     },
     {
       position: 4,
-      title: "Example Listing D — Portable Solar Generator 288Wh",
+      title: "示例 Listing D — 288Wh 便携式太阳能发电站",
       price: "$149.50",
       priceValue: 149.5,
       rating: 4.2,
@@ -84,7 +84,7 @@ const EXAMPLE_DATA = {
     },
     {
       position: 5,
-      title: "Example Listing E — Backup Battery Power Station 300W",
+      title: "示例 Listing E — 300W 备用电池储能电源",
       price: "$219.00",
       priceValue: 219,
       rating: 4.5,
@@ -99,6 +99,29 @@ const EXAMPLE_DATA = {
 
 renderExampleResults();
 
+analyzerProducts.addEventListener("click", (event) => {
+  const button = event.target.closest(".scan-disclosure");
+  if (!button) return;
+
+  const panel = document.getElementById(button.getAttribute("aria-controls"));
+  if (!panel) return;
+
+  const shouldExpand = button.getAttribute("aria-expanded") !== "true";
+  analyzerProducts.querySelectorAll(".scan-disclosure[aria-expanded='true']").forEach((openButton) => {
+    if (openButton === button) return;
+    openButton.setAttribute("aria-expanded", "false");
+    openButton.innerHTML = '查看详情 <span aria-hidden="true">⌄</span>';
+    const openPanel = document.getElementById(openButton.getAttribute("aria-controls"));
+    if (openPanel) openPanel.hidden = true;
+  });
+
+  button.setAttribute("aria-expanded", String(shouldExpand));
+  button.innerHTML = shouldExpand
+    ? '收起详情 <span aria-hidden="true">⌃</span>'
+    : '查看详情 <span aria-hidden="true">⌄</span>';
+  panel.hidden = !shouldExpand;
+});
+
 analyzerSamples.forEach((button) => {
   button.addEventListener("click", () => {
     analyzerKeyword.value = button.dataset.analyzerKeyword || "";
@@ -111,7 +134,7 @@ analyzerForm.addEventListener("submit", async (event) => {
 
   const keyword = analyzerKeyword.value.trim();
   if (!keyword) {
-    showAnalyzerMessage("Enter a product keyword first.", "error");
+    showAnalyzerMessage("请先输入产品关键词。", "error");
     return;
   }
 
@@ -121,7 +144,7 @@ analyzerForm.addEventListener("submit", async (event) => {
   currentAnalyzerRequest = controller;
 
   setAnalyzerLoading(true);
-  showAnalyzerMessage(`Scanning Amazon for "${keyword}"...`, "info");
+  showAnalyzerMessage(`正在扫描亚马逊关键词「${keyword}」…`, "info");
   renderAnalyzerLoading();
 
   try {
@@ -134,19 +157,19 @@ analyzerForm.addEventListener("submit", async (event) => {
     const payload = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      throw new Error(payload.error || "Amazon search failed.");
+      throw new Error(payload.error || "亚马逊搜索失败。");
     }
 
     renderAnalyzerResults(payload);
     const shown = Array.isArray(payload.products) ? payload.products.length : 0;
     const total = payload.summary?.total ?? shown;
-    showAnalyzerMessage(`Found ${total} competitors. Showing ${shown} products below.`, "success");
+    showAnalyzerMessage(`找到 ${total} 个竞品，以下展示 ${shown} 个商品。`, "success");
     window.requestAnimationFrame(() => {
       analyzerResults.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   } catch (error) {
     if (error.name !== "AbortError") {
-      const message = error instanceof Error ? error.message : "Amazon search failed.";
+      const message = error instanceof Error ? error.message : "亚马逊搜索失败。";
       showAnalyzerMessage(message, "error");
       renderAnalyzerError(message);
     }
@@ -158,7 +181,7 @@ analyzerForm.addEventListener("submit", async (event) => {
 
 function setAnalyzerLoading(isLoading) {
   analyzerSubmit.disabled = isLoading;
-  analyzerSubmit.textContent = isLoading ? "Scanning" : "Analyze";
+  analyzerSubmit.textContent = isLoading ? "分析中…" : "开始分析";
 }
 
 function showAnalyzerMessage(text, type) {
@@ -185,7 +208,7 @@ function average(value, digits = 1) {
 }
 
 function reviews(value) {
-  return typeof value === "number" && Number.isFinite(value) ? compactFormatter.format(value) : "Unknown";
+  return typeof value === "number" && Number.isFinite(value) ? compactFormatter.format(value) : "未知";
 }
 
 function shortText(value, length = 54) {
@@ -195,14 +218,14 @@ function shortText(value, length = 54) {
 
 function renderExampleResults() {
   renderAnalyzerResults(EXAMPLE_DATA);
-  analyzerResultCount.textContent = `Example results for "${EXAMPLE_KEYWORD}"`;
+  analyzerResultCount.textContent = "「便携式储能电源」示例结果";
   analyzerResultCount.classList.add("example");
-  analyzerTimestamp.textContent = "Run a search above for live data";
+  analyzerTimestamp.textContent = "在上方搜索以获取实时数据";
 }
 
 function renderAnalyzerLoading() {
   analyzerResultCount.classList.remove("example");
-  analyzerResultCount.textContent = "Scanning";
+  analyzerResultCount.textContent = "分析中…";
   analyzerTimestamp.textContent = "";
   analyzerSummary.innerHTML = Array.from({ length: 4 })
     .map(() => skeletonMetric())
@@ -230,13 +253,13 @@ function renderAnalyzerResults(payload) {
       ? `${money(price.min)} - ${money(price.max)}`
       : "--";
 
-  analyzerResultCount.textContent = `Showing ${productList.length} / ${stats.total ?? productList.length}`;
-  analyzerTimestamp.textContent = payload.fetchedAt ? `Updated ${formatTime(payload.fetchedAt)}` : "";
+  analyzerResultCount.textContent = `展示 ${productList.length} / ${stats.total ?? productList.length}`;
+  analyzerTimestamp.textContent = payload.fetchedAt ? `更新于 ${formatTime(payload.fetchedAt)}` : "";
 
   analyzerSummary.innerHTML = `
-    ${metricCard("Competitors", stats.total ?? 0, "organic_results count", "blue")}
-    ${metricCard("Price Range", priceRange, `Average ${money(price.average)} from ${price.count ?? 0} priced products`, "green")}
-    ${metricCard("Avg. Rating", average(stats.averageRating), `${stats.ratingCount ?? 0} products include rating data`, "purple")}
+    ${metricCard("竞品数量", stats.total ?? 0, "自然搜索结果数量", "blue")}
+    ${metricCard("价格区间", priceRange, `平均 ${money(price.average)}，共 ${price.count ?? 0} 个有价格的商品`, "green")}
+    ${metricCard("平均评分", average(stats.averageRating), `${stats.ratingCount ?? 0} 个商品包含评分数据`, "purple")}
     ${reviewDistributionCard(distribution)}
   `;
 
@@ -246,8 +269,8 @@ function renderAnalyzerResults(payload) {
     analyzerProducts.innerHTML = `
       <div class="scan-empty">
         <div>
-          <strong>No competitors found</strong>
-          <span>SerpApi did not return organic_results for this keyword.</span>
+          <strong>未找到竞品</strong>
+          <span>SerpApi 没有返回该关键词的自然搜索结果。</span>
         </div>
       </div>
     `;
@@ -258,21 +281,21 @@ function renderAnalyzerResults(payload) {
 }
 
 function renderAnalyzerError(message) {
-  analyzerResultCount.textContent = "Request failed";
+  analyzerResultCount.textContent = "请求失败";
   analyzerTimestamp.textContent = "";
   analyzerSummary.innerHTML = `
-    ${metricCard("Competitors", "--", "request failed", "blue")}
-    ${metricCard("Price Range", "--", "request failed", "green")}
-    ${metricCard("Avg. Rating", "--", "request failed", "purple")}
+    ${metricCard("竞品数量", "--", "请求失败", "blue")}
+    ${metricCard("价格区间", "--", "请求失败", "green")}
+    ${metricCard("平均评分", "--", "请求失败", "purple")}
     ${reviewDistributionCard({ high: 0, medium: 0, low: 0, unknown: 0 })}
   `;
   analyzerInsights.innerHTML = `
-    ${insightCard("Request Status", "No data", message, "orange")}
+    ${insightCard("请求状态", "暂无数据", message, "orange")}
   `;
   analyzerProducts.innerHTML = `
     <div class="scan-empty">
       <div>
-        <strong>No products to show</strong>
+        <strong>暂无商品可展示</strong>
         <span>${escapeHtml(message)}</span>
       </div>
     </div>
@@ -290,15 +313,15 @@ function renderAnalyzerInsights(payload, productList, distribution) {
   const highReviewRatio = Math.round((highReviewCount / total) * 100);
   const entryMeta =
     typeof price.min === "number" && typeof price.average === "number" && price.average > 0
-      ? `${average(((price.average - price.min) / price.average) * 100, 0)}% below average`
-      : "Need more price samples";
-  const reviewMeta = `${highReviewCount} products have 1000+ reviews`;
-  const topMeta = topReviewProduct ? shortText(topReviewProduct.title) : "No review sample";
+      ? `比均价低 ${average(((price.average - price.min) / price.average) * 100, 0)}%`
+      : "需要更多价格样本";
+  const reviewMeta = `${highReviewCount} 个商品的评论数超过 1000`;
+  const topMeta = topReviewProduct ? shortText(topReviewProduct.title) : "暂无评论样本";
 
   analyzerInsights.innerHTML = `
-    ${insightCard("Entry Price", money(price.min), entryMeta, "green")}
-    ${insightCard("Review Barrier", `${highReviewRatio}% high-review`, reviewMeta, "orange")}
-    ${insightCard("Top Review Leader", reviews(topReviewProduct?.reviews), topMeta, "blue")}
+    ${insightCard("切入价格", money(price.min), entryMeta, "green")}
+    ${insightCard("评论门槛", `${highReviewRatio}% 高评论商品`, reviewMeta, "orange")}
+    ${insightCard("评论数领先者", reviews(topReviewProduct?.reviews), topMeta, "blue")}
   `;
 }
 
@@ -329,13 +352,13 @@ function reviewDistributionCard(distribution) {
   );
   return `
     <article class="scan-metric orange">
-      <strong>Review Distribution</strong>
+      <strong>评论量分布</strong>
       <div class="distribution">
-        ${distributionRow("High 1000+", distribution.high || 0, total, "high")}
-        ${distributionRow("Mid 100-999", distribution.medium || 0, total, "medium")}
-        ${distributionRow("Low <100", distribution.low || 0, total, "low")}
+        ${distributionRow("高：1000+", distribution.high || 0, total, "high")}
+        ${distributionRow("中：100–999", distribution.medium || 0, total, "medium")}
+        ${distributionRow("低：<100", distribution.low || 0, total, "low")}
       </div>
-      <p>${distribution.unknown || 0} products with unknown reviews</p>
+      <p>${distribution.unknown || 0} 个商品的评论数未知</p>
     </article>
   `;
 }
@@ -354,44 +377,53 @@ function distributionRow(label, count, total, tone) {
 function productRow(product, averagePrice) {
   const priceBand = productPriceBand(product, averagePrice);
   const reviewBand = productReviewBand(product.reviews);
-  const rating = typeof product.rating === "number" ? `${product.rating.toFixed(1)} / 5` : "Unknown";
+  const rating = typeof product.rating === "number" ? `${product.rating.toFixed(1)} / 5` : "未知";
+  const panelId = `competitor-detail-${String(product.position ?? "item").replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const image = product.thumbnail
     ? `<img src="${escapeHtml(product.thumbnail)}" alt="" loading="lazy" />`
-    : `<span>#${escapeHtml(product.position)}</span>`;
+    : `<span aria-hidden="true">暂无图片</span>`;
   const asin = product.asin ? `<span>ASIN ${escapeHtml(product.asin)}</span>` : "";
   const link = product.link
-    ? `<a class="scan-link" href="${escapeHtml(product.link)}" target="_blank" rel="noopener noreferrer">Open Amazon</a>`
+    ? `<a class="scan-link" href="${escapeHtml(product.link)}" target="_blank" rel="noopener noreferrer">在亚马逊打开</a>`
     : "";
 
   return `
     <article class="scan-product">
-      <div class="scan-rank">#${escapeHtml(product.position)}</div>
-      <div class="scan-image">${image}</div>
-      <div>
-        <h4 class="scan-title">${escapeHtml(product.title)}</h4>
-        <div class="scan-tags">
-          <span class="${priceBand.tone}">${escapeHtml(priceBand.label)}</span>
-          <span class="${reviewBand.tone}">${escapeHtml(reviewBand.label)}</span>
-          ${asin}
+      <div class="scan-product-summary">
+        <div class="scan-rank">#${escapeHtml(product.position)}</div>
+        <div class="scan-product-intro">
+          <h4 class="scan-title">${escapeHtml(product.title)}</h4>
+          <div class="scan-tags">
+            <span class="${priceBand.tone}">${escapeHtml(priceBand.label)}</span>
+            <span class="${reviewBand.tone}">${escapeHtml(reviewBand.label)}</span>
+            ${asin}
+          </div>
         </div>
+        <div class="scan-quick-price"><span>价格</span><strong>${escapeHtml(product.price || "--")}</strong></div>
+        <button class="scan-disclosure" type="button" aria-expanded="false" aria-controls="${panelId}">
+          查看详情 <span aria-hidden="true">⌄</span>
+        </button>
       </div>
-      <div class="scan-side">
+      <div class="scan-product-panel" id="${panelId}" hidden>
+        <div class="scan-image">${image}</div>
+        <div class="scan-side">
         <div class="scan-product-metrics">
           <div class="scan-product-metric">
-            <span>Price</span>
+            <span>价格</span>
             <strong>${escapeHtml(product.price || "--")}</strong>
           </div>
           <div class="scan-product-metric">
-            <span>Rating</span>
+            <span>评分</span>
             <strong>${escapeHtml(rating)}</strong>
             ${ratingMeter(product.rating)}
           </div>
           <div class="scan-product-metric">
-            <span>Reviews</span>
+            <span>评论数</span>
             <strong>${escapeHtml(reviews(product.reviews))}</strong>
           </div>
         </div>
         ${link}
+      </div>
       </div>
     </article>
   `;
@@ -399,18 +431,18 @@ function productRow(product, averagePrice) {
 
 function productPriceBand(product, averagePrice) {
   if (typeof product.priceValue !== "number" || typeof averagePrice !== "number" || averagePrice <= 0) {
-    return { label: "Price unknown", tone: "" };
+    return { label: "价格未知", tone: "" };
   }
-  if (product.priceValue <= averagePrice * 0.85) return { label: "Low entry", tone: "green" };
-  if (product.priceValue >= averagePrice * 1.15) return { label: "Premium band", tone: "orange" };
-  return { label: "Core price", tone: "blue" };
+  if (product.priceValue <= averagePrice * 0.85) return { label: "低价切入", tone: "green" };
+  if (product.priceValue >= averagePrice * 1.15) return { label: "高价区间", tone: "orange" };
+  return { label: "主流价格", tone: "blue" };
 }
 
 function productReviewBand(value) {
-  if (typeof value !== "number") return { label: "Reviews unknown", tone: "" };
-  if (value >= 1000) return { label: "High reviews", tone: "orange" };
-  if (value >= 100) return { label: "Mid reviews", tone: "purple" };
-  return { label: "Low reviews", tone: "green" };
+  if (typeof value !== "number") return { label: "评论未知", tone: "" };
+  if (value >= 1000) return { label: "高评论量", tone: "orange" };
+  if (value >= 100) return { label: "中等评论量", tone: "purple" };
+  return { label: "低评论量", tone: "green" };
 }
 
 function ratingMeter(rating) {
@@ -419,7 +451,7 @@ function ratingMeter(rating) {
 }
 
 function formatTime(value) {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("zh-CN", {
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",

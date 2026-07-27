@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listing Lab | Amazon Listing Optimization Portfolio</title>
-  <meta name="description" content="Amazon listing optimization portfolio: before &amp; after case studies showing keyword coverage, bullet restructuring, and buyer-confidence copy improvements for electronics, energy, and consumer tech listings." />
+  <title>Listing Lab｜亚马逊 Listing 优化作品集</title>
+  <meta name="description" content="亚马逊 Listing 优化作品集：通过前后对比案例，展示电子、能源与消费科技产品的关键词覆盖、五点重构和买家信任感文案优化。" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Listing Lab | Amazon Listing Optimization Portfolio" />
-  <meta property="og:description" content="Before &amp; after Amazon listing case studies with quantified optimization metrics for electronics, energy, and consumer tech products." />
-  <meta property="og:image" content="https://listing-lab-delta.vercel.app/assets/images/hero-city-skyline.jpg" />
+  <meta property="og:title" content="Listing Lab｜亚马逊 Listing 优化作品集" />
+  <meta property="og:description" content="电子、能源与消费科技产品的亚马逊 Listing 优化前后对比案例与量化指标。" />
+  <meta property="og:image" content="https://listing-lab-delta.vercel.app/assets/images/product-18650-battery-kit.png" />
   <meta property="og:url" content="https://listing-lab-delta.vercel.app/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://listing-lab-delta.vercel.app/" />
@@ -16,20 +16,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
+    /* Hallmark · macrostructure: Workbench · genre: editorial · tone: technical · anchor hue: blue
+     * phase: hero/nav refinement · pre-emit critique: P5 H5 E4 S5 R5 V5
+     */
     :root {
-      --bg: #000000;
-      --bg-deep: #0a0f1a;
-      --blue: #2997ff;
+      --bg: #080b10;
+      --bg-deep: #101722;
+      --blue: #58a6ff;
       --purple: #8b5cf6;
       --green: #00d68f;
       --blue-soft: rgba(41, 151, 255, 0.16);
-      --white: #ffffff;
-      --muted: rgba(255, 255, 255, 0.6);
-      --faint: rgba(255, 255, 255, 0.08);
-      --glass: rgba(255, 255, 255, 0.04);
-      --glass-strong: rgba(255, 255, 255, 0.075);
-      --line: rgba(255, 255, 255, 0.1);
+      --white: #f3f6f9;
+      --muted: rgba(223, 231, 240, 0.68);
+      --faint: rgba(223, 231, 240, 0.08);
+      --glass: rgba(223, 231, 240, 0.04);
+      --glass-strong: rgba(223, 231, 240, 0.075);
+      --line: rgba(223, 231, 240, 0.14);
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --focus-ring: #8ecbff;
+      --nav-offset: 80px;
     }
 
     * {
@@ -39,67 +44,46 @@
     html {
       scroll-behavior: smooth;
       background: var(--bg);
+      overflow-x: clip;
     }
 
     body {
       position: relative;
       min-height: 100vh;
       margin: 0;
-      overflow-x: hidden;
+      overflow-x: clip;
       color: var(--white);
-      background:
-        linear-gradient(160deg, #000000 0%, #030712 46%, #0a0f1a 100%);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.5;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    body::before {
-      opacity: 0.58;
-      background:
-        linear-gradient(115deg, transparent 0%, rgba(41, 151, 255, 0.12) 28%, transparent 54%),
-        linear-gradient(245deg, transparent 8%, rgba(255, 255, 255, 0.06) 38%, transparent 66%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 140px),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 140px);
-      background-size: 180% 180%, 160% 160%, 140px 140px, 140px 140px;
-      animation: meshShift 22s ease-in-out infinite alternate;
-    }
-
-    body::after {
-      z-index: -1;
-      opacity: 0.34;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.24'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      mix-blend-mode: screen;
     }
 
     a {
       color: inherit;
     }
 
-    .cursor-glow {
+    :where(a, button, input, textarea, summary):focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 20;
-      width: 280px;
-      height: 280px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(41, 151, 255, 0.2), rgba(41, 151, 255, 0.06) 38%, transparent 68%);
-      filter: blur(18px);
-      opacity: 0;
-      pointer-events: none;
-      transform: translate3d(-50%, -50%, 0);
-      transition: opacity 220ms ease;
-      mix-blend-mode: screen;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--bg);
+      background: var(--focus-ring);
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus-visible {
+      outline-color: var(--white);
+      transform: translateY(0);
     }
 
     .page {
@@ -110,26 +94,32 @@
 
     .site-nav {
       position: sticky;
-      top: 16px;
-      z-index: 10;
+      top: 0;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      min-height: 58px;
-      margin-bottom: 22px;
-      padding: 10px 12px 10px 18px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(7, 12, 22, 0.74);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
-      backdrop-filter: blur(22px);
+      gap: 28px;
+      min-height: 64px;
+      margin-bottom: 0;
+      padding: 8px 0 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    #portfolio-title,
+    #amazon-analyzer,
+    .scan-results {
+      scroll-margin-top: var(--nav-offset);
     }
 
     .nav-brand {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
       color: var(--white);
       font-family: Sora, Inter, sans-serif;
-      font-size: 1rem;
+      font-size: 1.06rem;
       font-weight: 800;
       text-decoration: none;
       white-space: nowrap;
@@ -140,147 +130,66 @@
       align-items: center;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 8px;
+      gap: 26px;
     }
 
     .nav-link,
     .nav-tool {
       display: inline-flex;
-      min-height: 38px;
+      min-height: 44px;
       align-items: center;
       justify-content: center;
-      padding: 8px 13px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      color: rgba(255, 255, 255, 0.78);
+      padding: 8px 0;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      border-radius: 0;
+      color: var(--muted);
       font-size: 0.82rem;
-      font-weight: 800;
+      font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
     }
 
     .nav-link:hover,
     .nav-link:focus-visible {
-      border-color: var(--line);
+      border-bottom-color: var(--white);
       color: var(--white);
-      background: rgba(255, 255, 255, 0.05);
-      outline: none;
     }
 
     .nav-tool {
-      border-color: rgba(41, 151, 255, 0.62);
-      color: var(--white);
-      background:
-        linear-gradient(135deg, rgba(41, 151, 255, 0.96), rgba(0, 214, 143, 0.72));
-      box-shadow: 0 14px 38px rgba(41, 151, 255, 0.26);
+      border-bottom-color: var(--blue);
+      color: var(--blue);
     }
 
     .nav-tool:hover,
     .nav-tool:focus-visible {
-      filter: brightness(1.08);
-      outline: none;
+      border-bottom-color: var(--white);
+      color: var(--white);
     }
 
     .hero {
       position: relative;
       display: grid;
-      min-height: 80vh;
-      overflow: hidden;
-      place-items: center;
-      padding: 72px 0 86px;
-      text-align: center;
-      isolation: isolate;
+      grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+      gap: clamp(48px, 5vw, 72px);
+      align-items: center;
+      min-height: 0;
+      padding: clamp(56px, 5vw, 72px) 0 clamp(76px, 7vw, 104px);
+      border-bottom: 1px solid var(--line);
+      text-align: left;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      inset: auto 50% 58px;
-      width: min(620px, 88vw);
-      height: 1px;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, transparent, rgba(41, 151, 255, 0.7), transparent);
+    .hero-copy {
+      min-width: 0;
     }
 
-    .hero-aurora,
-    .particle-field {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .hero-aurora {
-      z-index: -1;
-      opacity: 0.7;
-      background:
-        radial-gradient(circle at 22% 28%, rgba(41, 151, 255, 0.34), transparent 30%),
-        radial-gradient(circle at 78% 24%, rgba(139, 92, 246, 0.32), transparent 32%),
-        radial-gradient(circle at 54% 78%, rgba(0, 214, 143, 0.18), transparent 28%),
-        linear-gradient(135deg, rgba(41, 151, 255, 0.08), rgba(139, 92, 246, 0.06), rgba(0, 214, 143, 0.05));
-      background-size: 130% 130%, 135% 135%, 120% 120%, 180% 180%;
-      filter: blur(26px) saturate(1.18);
-      transform: scale(1.08);
-      animation: auroraFlow 9s ease-in-out infinite alternate;
-    }
-
-    .particle-field {
-      z-index: 0;
-      opacity: 0.72;
-    }
-
-    .hero .hero-photo {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      max-width: none;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 72%;
-      opacity: 0.78;
-      filter: saturate(1.25) brightness(1);
-      transform-origin: center 78%;
-      animation: cityDrift 30s ease-in-out infinite alternate;
-    }
-
-    .hero-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 62% 46% at 50% 42%, rgba(0, 0, 0, 0.42), transparent 78%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.22) 34%, rgba(3, 7, 18, 0.12) 66%, rgba(0, 0, 0, 0.85) 100%);
-    }
-
-    @keyframes cityDrift {
-      from {
-        transform: scale(1.07) translateX(-1.1%);
-      }
-      to {
-        transform: scale(1.17) translateX(1.1%);
-      }
-    }
-
-    .hero > div {
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-    }
-
-    .brand {
-      margin: 0 0 28px;
-      color: var(--white);
-      font-family: Sora, Inter, sans-serif;
-      font-size: 2.4rem;
+    .hero-context {
+      margin: 0 0 22px;
+      color: var(--blue);
+      font-size: 0.78rem;
       font-weight: 800;
-      line-height: 1;
-      letter-spacing: 0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     h1,
@@ -291,82 +200,177 @@
     }
 
     h1 {
-      max-width: 940px;
-      margin: 0 auto;
-      font-size: 4.35rem;
+      max-width: 13ch;
+      min-width: 0;
+      margin: 0;
+      font-size: clamp(3.3rem, 5.8vw, 4.95rem);
       font-weight: 800;
-      line-height: 1.02;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      overflow-wrap: anywhere;
       text-wrap: balance;
     }
 
-    h1.typing::after {
-      content: "";
-      display: inline-block;
-      width: 0.08em;
-      height: 0.86em;
-      margin-left: 0.08em;
-      border-radius: 999px;
-      background: var(--blue);
-      box-shadow: 0 0 24px rgba(41, 151, 255, 0.72);
-      vertical-align: -0.08em;
-      animation: caretPulse 820ms steps(1) infinite;
-    }
-
     .subtitle {
-      max-width: 760px;
-      margin: 24px auto 0;
+      max-width: 62ch;
+      margin: 28px 0 0;
       color: var(--muted);
-      font-size: 1.12rem;
-      line-height: 1.75;
+      font-size: 1.06rem;
+      line-height: 1.7;
       text-wrap: pretty;
     }
 
-    .specialty {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
+      align-items: center;
+      gap: 12px 22px;
       margin-top: 34px;
+    }
+
+    .hero-primary,
+    .hero-secondary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .hero-primary {
+      padding: 11px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      color: var(--bg);
+      background: var(--blue);
+    }
+
+    .hero-primary:hover,
+    .hero-primary:focus-visible {
+      color: var(--white);
+      background: transparent;
+    }
+
+    .hero-primary:active {
+      border-color: var(--white);
+      color: var(--white);
+      background: transparent;
+    }
+
+    .hero-secondary {
+      border-bottom: 1px solid var(--line);
+      color: var(--white);
+    }
+
+    .hero-secondary:hover,
+    .hero-secondary:focus-visible {
+      border-bottom-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .hero-secondary:active {
+      border-bottom-color: var(--white);
+      color: var(--white);
+    }
+
+    .specialty {
+      display: grid;
+      gap: 8px;
+      margin-top: 38px;
       color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 700;
-      text-align: center;
+      font-size: 0.86rem;
+      font-weight: 650;
+      text-align: left;
     }
 
     .specialty > span:not(.status-pill) {
-      display: inline-flex;
-      min-height: 40px;
-      align-items: center;
-      padding: 9px 15px;
-      border: 1px solid var(--faint);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(18px);
+      color: var(--muted);
     }
 
     .status-pill {
       display: inline-flex;
-      min-height: 40px;
       align-items: center;
       gap: 9px;
       max-width: 100%;
-      padding: 9px 15px;
-      border: 1px solid rgba(41, 151, 255, 0.34);
-      border-radius: 999px;
       color: var(--white);
-      background: var(--blue-soft);
-      box-shadow: 0 0 32px rgba(41, 151, 255, 0.16);
       white-space: normal;
       text-align: left;
-      backdrop-filter: blur(18px);
     }
 
     .status-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--blue);
-      box-shadow: 0 0 18px rgba(41, 151, 255, 0.9);
+      background: var(--green);
+    }
+
+    .hero-proof {
+      min-width: 0;
+      margin: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-proof figcaption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-proof figcaption span,
+    .proof-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-proof figcaption strong {
+      color: var(--white);
+      font-family: Sora, Inter, sans-serif;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .proof-row p {
+      min-width: 0;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 650;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .proof-row-after .proof-label {
+      color: var(--blue);
+    }
+
+    .proof-row-after p {
+      color: var(--white);
+    }
+
+    .proof-note {
+      margin: 0;
+      padding: 14px 0 16px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.5;
     }
 
     .portfolio {
@@ -475,12 +479,11 @@
       padding: 0 20px;
       font: inherit;
       font-size: 0.98rem;
-      outline: none;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     .analyzer-form input::placeholder {
-      color: rgba(255, 255, 255, 0.42);
+      color: rgba(255, 255, 255, 0.62);
     }
 
     .analyzer-form input:focus {
@@ -506,7 +509,6 @@
     .analyzer-submit:hover:not(:disabled),
     .analyzer-submit:focus-visible {
       filter: brightness(1.08);
-      outline: none;
     }
 
     .analyzer-submit:disabled {
@@ -523,7 +525,7 @@
 
     .sample-row button {
       display: inline-flex;
-      min-height: 34px;
+      min-height: 44px;
       align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 999px;
@@ -540,7 +542,6 @@
     .sample-row button:focus-visible {
       border-color: rgba(41, 151, 255, 0.46);
       color: var(--white);
-      outline: none;
     }
 
     .analyzer-message {
@@ -689,7 +690,6 @@
 
     .scan-results {
       margin-top: 24px;
-      scroll-margin-top: 92px;
     }
 
     .scan-results-head {
@@ -868,7 +868,7 @@
 
     .scan-product-metric span {
       display: block;
-      color: rgba(255, 255, 255, 0.46);
+      color: rgba(255, 255, 255, 0.62);
       font-size: 0.72rem;
       font-weight: 900;
       text-transform: uppercase;
@@ -901,7 +901,7 @@
     .scan-link {
       display: inline-flex;
       width: 100%;
-      min-height: 40px;
+      min-height: 44px;
       align-items: center;
       justify-content: center;
       margin-top: 12px;
@@ -917,7 +917,6 @@
     .scan-link:hover,
     .scan-link:focus-visible {
       filter: brightness(1.08);
-      outline: none;
     }
 
     .scan-skeleton {
@@ -974,10 +973,7 @@
         var(--glass);
       box-shadow: var(--shadow);
       backdrop-filter: blur(24px);
-      opacity: 0;
-      transform: translateY(28px);
       transition:
-        opacity 700ms ease,
         transform 700ms ease,
         border-color 220ms ease,
         background-color 220ms ease,
@@ -994,11 +990,6 @@
         linear-gradient(245deg, transparent 45%, rgba(255, 255, 255, 0.055));
       transition: opacity 220ms ease;
       pointer-events: none;
-    }
-
-    .project-card.is-visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .project-card:hover,
@@ -1155,12 +1146,11 @@
       filter: brightness(1.08);
       box-shadow: 0 18px 46px rgba(41, 151, 255, 0.4);
       transform: scale(1.035);
-      outline: none;
     }
 
     .portfolio-disclaimer {
       margin: -14px 0 24px;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.64);
       font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.01em;
@@ -1274,44 +1264,6 @@
       font-size: 0.82rem;
     }
 
-    @keyframes meshShift {
-      0% {
-        background-position: 0% 0%, 100% 0%, 0 0, 0 0;
-      }
-
-      100% {
-        background-position: 100% 100%, 0% 100%, 70px 40px, 50px 80px;
-      }
-    }
-
-    @keyframes auroraFlow {
-      0% {
-        background-position: 0% 42%, 100% 16%, 50% 100%, 0% 50%;
-        transform: scale(1.08) rotate(0deg);
-      }
-
-      50% {
-        background-position: 34% 18%, 62% 58%, 82% 42%, 70% 24%;
-      }
-
-      100% {
-        background-position: 100% 34%, 0% 82%, 16% 12%, 100% 64%;
-        transform: scale(1.14) rotate(2deg);
-      }
-    }
-
-    @keyframes caretPulse {
-      0%,
-      48% {
-        opacity: 1;
-      }
-
-      49%,
-      100% {
-        opacity: 0;
-      }
-    }
-
     @keyframes shimmer {
       0% {
         background-position: 200% 0;
@@ -1325,11 +1277,6 @@
     @media (max-width: 980px) {
       .page {
         width: min(100% - 36px, 1180px);
-      }
-
-      .site-nav {
-        position: relative;
-        top: auto;
       }
 
       .analyzer-head,
@@ -1367,16 +1314,18 @@
       }
 
       .hero {
-        min-height: 76vh;
-        padding: 56px 0 72px;
-      }
-
-      .brand {
-        font-size: 2rem;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 52px;
+        padding: 64px 0 88px;
       }
 
       h1 {
-        font-size: 3.2rem;
+        max-width: 13ch;
+        font-size: 3.9rem;
+      }
+
+      .hero-proof {
+        max-width: 720px;
       }
 
       .project-grid {
@@ -1389,20 +1338,51 @@
     }
 
     @media (max-width: 620px) {
+      :root {
+        --nav-offset: 128px;
+      }
+
       .page {
         width: min(100% - 28px, 1180px);
         padding: 24px 0 30px;
       }
 
       .site-nav {
-        align-items: flex-start;
-        flex-direction: column;
-        border-radius: 22px;
-        padding: 14px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 6px 8px;
+        align-items: center;
+        border-radius: 0;
+        padding: 8px 0 12px;
       }
 
       .nav-links {
-        justify-content: flex-start;
+        display: contents;
+      }
+
+      .nav-brand {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .nav-link {
+        padding-inline: 8px;
+        font-size: 0.76rem;
+      }
+
+      .nav-link:nth-child(1) {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .nav-link:nth-child(2) {
+        grid-column: 2;
+        grid-row: 2;
+      }
+
+      .nav-tool {
+        grid-column: 2;
+        grid-row: 1;
       }
 
       .analyzer {
@@ -1458,18 +1438,13 @@
       }
 
       .hero {
-        min-height: 80vh;
-        padding: 46px 0 62px;
-      }
-
-      .brand {
-        margin-bottom: 22px;
-        font-size: 1.72rem;
+        gap: 44px;
+        padding: 48px 0 68px;
       }
 
       h1 {
-        font-size: 2.32rem;
-        line-height: 1.08;
+        font-size: 2.66rem;
+        line-height: 1;
       }
 
       .subtitle {
@@ -1479,7 +1454,6 @@
       }
 
       .specialty {
-        align-items: center;
         margin-top: 28px;
       }
 
@@ -1550,19 +1524,6 @@
         scroll-behavior: auto;
       }
 
-      body::before {
-        animation: none;
-      }
-
-      .hero-aurora,
-      h1.typing::after {
-        animation: none;
-      }
-
-      .hero-photo img {
-        animation: none;
-      }
-
       .project-card,
       .project-card::before,
       .card-action {
@@ -1580,79 +1541,95 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="assets/portfolio-refresh.css" />
 </head>
-<body>
-  <div class="cursor-glow" aria-hidden="true"></div>
-  <main class="page" id="top">
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a class="nav-brand" href="#top" aria-label="Listing Lab home">Listing Lab</a>
+<body id="top">
+  <a class="skip-link" href="#main-content">跳至主要内容</a>
+  <main class="page" id="main-content">
+    <nav class="site-nav" aria-label="主导航">
+      <a class="nav-brand" href="#top" aria-label="Listing Lab 首页">Listing Lab</a>
       <div class="nav-links">
-        <a class="nav-link" href="#portfolio-title">Case Studies</a>
-        <a class="nav-link" href="#amazon-analyzer">Competitor Analyzer</a>
-        <a class="nav-tool" href="optimizer.html">AI Listing Optimizer</a>
+        <a class="nav-link" href="#portfolio-title">案例作品</a>
+        <a class="nav-link" href="#amazon-analyzer">竞品扫描</a>
+        <a class="nav-tool" href="optimizer.html">AI Listing 优化器</a>
       </div>
     </nav>
 
-    <header class="hero" aria-label="Portfolio introduction">
-      <div class="hero-aurora" aria-hidden="true"></div>
-      <canvas class="particle-field" aria-hidden="true"></canvas>
-      <div class="hero-photo" aria-hidden="true">
-        <img src="assets/images/hero-city-skyline.jpg" alt="" decoding="async" />
-      </div>
-      <div>
-        <p class="brand">Listing Lab</p>
-        <h1 id="hero-title">Amazon Listing Optimization &mdash; Before &amp; After Case Studies</h1>
-        <p class="subtitle">Specialist in electronics, energy, and consumer tech listings with a focus on buyer intent, benefit-led copy, and conversion-ready detail structure.</p>
-        <aside class="specialty" aria-label="Availability">
-          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span> Open to full-time cross-border e-commerce operations roles</span>
-          <span>Electronics / Energy / Consumer Tech</span>
+    <header class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="hero-context">亚马逊 Listing 优化作品集</p>
+        <h1 id="hero-title">让每一条 Listing 更贴近买家的搜索意图。</h1>
+        <p class="subtitle">聚焦电子、能源与消费科技产品，以更清晰的关键词意图、可核验的规格信息和更有说服力的文案，重建买家信任。</p>
+        <div class="hero-actions" aria-label="作品集操作">
+          <a class="hero-primary" href="amazon-listing-optimization-case-study.html">查看电池案例</a>
+          <a class="hero-secondary" href="#amazon-analyzer">开始市场扫描</a>
+        </div>
+        <aside class="specialty" aria-label="求职状态">
+          <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>正在寻找跨境电商运营全职机会</span>
+          <span>电子产品 / 能源产品 / 消费科技</span>
         </aside>
       </div>
+
+      <figure class="hero-proof" aria-labelledby="hero-proof-title">
+        <figcaption>
+          <span>案例节选</span>
+          <strong id="hero-proof-title">18650 Battery Kit</strong>
+        </figcaption>
+        <div class="proof-row">
+          <span class="proof-label">优化前</span>
+          <p>18650 Battery 4 Pack Rechargeable</p>
+        </div>
+        <div class="proof-row proof-row-after">
+          <span class="proof-label">优化后</span>
+          <p>18650 Rechargeable Battery Kit, 4 Pack 3500mAh Li-ion Batteries with 4-Slot Smart Charger, UN38.3 Certified Button Top Cells</p>
+        </div>
+        <p class="proof-note">模拟作品集数据 · 仅用于展示优化方法，非真实销售结果</p>
+      </figure>
     </header>
 
     <section class="analyzer" id="amazon-analyzer" aria-labelledby="analyzer-title">
       <div class="analyzer-head">
         <div>
-          <p class="section-label">Live Research Tool</p>
-          <h2 id="analyzer-title">Amazon Market Scanner for listing strategy</h2>
-          <p class="analyzer-copy">Search a product keyword, pull live Amazon organic results through SerpApi, and scan price bands, ratings, review density, and the top competitors before writing copy.</p>
+          <p class="section-label">实时市场调研工具</p>
+          <h2 id="analyzer-title">为 Listing 策略准备的亚马逊市场扫描器</h2>
+          <p class="analyzer-copy">输入产品关键词，通过 SerpApi 拉取亚马逊自然搜索结果，在撰写文案前快速查看价格带、评分、评论密度和头部竞品。</p>
           <form class="analyzer-form" id="analyzer-form">
-            <label for="analyzer-keyword">Product keyword</label>
-            <input id="analyzer-keyword" name="keyword" type="search" placeholder="electric bike helmet" autocomplete="off" required />
-            <button class="analyzer-submit" id="analyzer-submit" type="submit">Analyze</button>
+            <label for="analyzer-keyword">产品关键词</label>
+            <input id="analyzer-keyword" name="keyword" type="search" placeholder="电动自行车头盔" autocomplete="off" required />
+            <button class="analyzer-submit" id="analyzer-submit" type="submit">开始分析</button>
           </form>
-          <div class="sample-row" aria-label="Sample keywords">
-            <button type="button" data-analyzer-keyword="electric bike helmet">electric bike helmet</button>
-            <button type="button" data-analyzer-keyword="portable power station">portable power station</button>
-            <button type="button" data-analyzer-keyword="wireless earbuds">wireless earbuds</button>
+          <div class="sample-row" aria-label="示例关键词">
+            <button type="button" data-analyzer-keyword="electric bike helmet">电动自行车头盔</button>
+            <button type="button" data-analyzer-keyword="portable power station">便携式储能电源</button>
+            <button type="button" data-analyzer-keyword="wireless earbuds">无线蓝牙耳机</button>
           </div>
           <div class="analyzer-message" id="analyzer-message" role="status" hidden></div>
         </div>
-        <aside class="analyzer-status-card" aria-label="API status">
-          <strong>Secure API route</strong>
-          <span>SerpApi key is read on the server only. The browser calls this site&rsquo;s own <code>/api/amazon-search</code> endpoint.</span>
+        <aside class="analyzer-status-card" aria-label="接口状态">
+          <strong>安全服务端接口</strong>
+          <span>SerpApi 密钥仅在服务端读取；浏览器只调用本站的 <code>/api/amazon-search</code> 接口。</span>
         </aside>
       </div>
 
-      <div class="analyzer-grid" id="analyzer-summary" aria-label="Market summary"></div>
-      <div class="insight-grid" id="analyzer-insights" aria-label="Market insights"></div>
+      <div class="analyzer-grid" id="analyzer-summary" aria-label="市场概览"></div>
+      <div class="insight-grid" id="analyzer-insights" aria-label="市场洞察"></div>
 
       <div class="scan-results" id="analyzer-results">
         <div class="scan-results-head">
           <div>
-            <p class="section-label">Top 10</p>
-            <h3>Competitor Details</h3>
+            <p class="section-label">前 10 名结果</p>
+            <h3>竞品详情</h3>
           </div>
           <div class="result-meta">
-            <span class="result-count" id="analyzer-result-count">Waiting for search</span>
+            <span class="result-count" id="analyzer-result-count">等待搜索</span>
             <span id="analyzer-timestamp"></span>
           </div>
         </div>
         <div class="product-list" id="analyzer-products">
           <div class="scan-empty">
             <div>
-              <strong>Enter a product keyword</strong>
-              <span>No competitor data yet.</span>
+              <strong>输入产品关键词即可开始</strong>
+              <span>暂时没有竞品数据。</span>
             </div>
           </div>
         </div>
@@ -1660,286 +1637,132 @@
     </section>
 
     <section class="portfolio" aria-labelledby="portfolio-title">
-      <p class="section-label" id="portfolio-title">Selected Case Studies</p>
-      <p class="portfolio-disclaimer">Methodology case studies &middot; simulated listing data, not live sales results</p>
+      <p class="section-label" id="portfolio-title">精选案例作品</p>
+      <p class="portfolio-disclaimer">方法论案例 · 使用模拟 Listing 数据，不代表真实销售结果</p>
       <div class="project-grid" id="portfolio-cards">
         <article class="project-card">
           <figure class="card-media">
-            <img src="assets/images/product-18650-battery-kit-animated.webp" alt="18650 rechargeable battery kit product shot" />
+            <img src="assets/images/product-18650-battery-kit-poster.webp" alt="18650 可充电电池套装产品图" width="960" height="720" loading="lazy" decoding="async" />
           </figure>
           <div class="card-body">
-            <p class="tag">Electronics / Energy</p>
-            <h2>18650 Rechargeable Battery Kit</h2>
-            <p>Improved the title, bullet hierarchy, and benefit framing so technical specs translate into buyer confidence.</p>
-            <div class="card-meta" aria-label="Optimization focus">
+            <p class="tag">电子产品 / 能源</p>
+            <h2>18650 可充电电池套装</h2>
+            <p>重构标题、五点层级与卖点表达，让技术规格清晰转化为买家的信任理由。</p>
+            <div class="card-meta" aria-label="优化重点">
               <div class="metric">
-                <span>Focus</span>
-                <strong>Technical clarity</strong>
+                <span>重点</span>
+                <strong>技术信息清晰度</strong>
               </div>
               <div class="metric">
-                <span>Outcome</span>
-                <strong>Title keyword coverage: 3 &rarr; 9 search intents</strong>
+                <span>结果</span>
+                <strong>标题关键词覆盖：3 个 → 9 个搜索意图</strong>
               </div>
             </div>
-            <a class="card-action" href="amazon-listing-optimization-case-study.html" aria-label="View case study for 18650 Rechargeable Battery Kit">View Case Study &rarr;</a>
+            <a class="card-action" href="amazon-listing-optimization-case-study.html" aria-label="查看 18650 可充电电池套装案例">查看案例 &rarr;</a>
           </div>
         </article>
 
         <article class="project-card">
           <figure class="card-media">
-            <img src="assets/images/product-portable-power-station-animated.webp" alt="Portable power station product shot" />
+            <img src="assets/images/product-portable-power-station-poster.webp" alt="便携式储能电源产品图" width="960" height="720" loading="lazy" decoding="async" />
           </figure>
           <div class="card-body">
-            <p class="tag">Outdoor / Home Backup</p>
-            <h2>Portable Power Station 300W</h2>
-            <p>Repositioned capacity, safety, and use-case messaging around emergency backup, camping, and device charging intent.</p>
-            <div class="card-meta" aria-label="Optimization focus">
+            <p class="tag">户外 / 家庭备电</p>
+            <h2>300W 便携式储能电源</h2>
+            <p>围绕应急备电、露营和设备充电意图，重组容量、安全性与使用场景的表达。</p>
+            <div class="card-meta" aria-label="优化重点">
               <div class="metric">
-                <span>Focus</span>
-                <strong>Use-case intent</strong>
+                <span>重点</span>
+                <strong>使用场景意图</strong>
               </div>
               <div class="metric">
-                <span>Outcome</span>
-                <strong>Bullets restructured: 4 generic claims &rarr; 5 spec-backed bullets</strong>
+                <span>结果</span>
+                <strong>五点重构：4 条泛泛描述 → 5 条有规格支撑的卖点</strong>
               </div>
             </div>
-            <a class="card-action" href="portable-power-station-300w-case-study.html" aria-label="View case study for Portable Power Station 300W">View Case Study &rarr;</a>
+            <a class="card-action" href="portable-power-station-300w-case-study.html" aria-label="查看 300W 便携式储能电源案例">查看案例 &rarr;</a>
           </div>
         </article>
 
         <article class="project-card">
           <figure class="card-media">
-            <img src="assets/images/product-wireless-earbuds-animated.webp" alt="Wireless Bluetooth earbuds product shot" />
+            <img src="assets/images/product-wireless-earbuds-poster.webp" alt="无线蓝牙耳机产品图" width="960" height="720" loading="lazy" decoding="async" />
           </figure>
           <div class="card-body">
-            <p class="tag">Consumer Electronics</p>
-            <h2>Wireless Bluetooth Earbuds</h2>
-            <p>Strengthened feature prioritization, everyday benefit language, and scannable bullets for comparison-driven shoppers.</p>
-            <div class="card-meta" aria-label="Optimization focus">
+            <p class="tag">消费电子</p>
+            <h2>无线蓝牙耳机</h2>
+            <p>强化功能优先级、日常收益表达和易扫读的五点描述，帮助比较型买家快速决策。</p>
+            <div class="card-meta" aria-label="优化重点">
               <div class="metric">
-                <span>Focus</span>
-                <strong>Benefit hierarchy</strong>
+                <span>重点</span>
+                <strong>收益层级</strong>
               </div>
               <div class="metric">
-                <span>Outcome</span>
-                <strong>Numeric specs disclosed: 0 &rarr; 6 quantified claims</strong>
+                <span>结果</span>
+                <strong>量化规格披露：0 条 → 6 条</strong>
               </div>
             </div>
-            <a class="card-action" href="wireless-bluetooth-earbuds-case-study.html" aria-label="View case study for Wireless Bluetooth Earbuds">View Case Study &rarr;</a>
+            <a class="card-action" href="wireless-bluetooth-earbuds-case-study.html" aria-label="查看无线蓝牙耳机案例">查看案例 &rarr;</a>
           </div>
         </article>
       </div>
     </section>
 
     <section class="methodology" aria-labelledby="methodology-title">
-      <p class="section-label" id="methodology-title">Methodology</p>
+      <p class="section-label" id="methodology-title">优化方法</p>
       <div class="process-flow">
         <div class="process-step">
-          <strong>Keyword &amp; competitor research</strong>
-          <span>Pull live competitor listings and search terms to see what buyers are actually searching for.</span>
+          <strong>关键词与竞品调研</strong>
+          <span>抓取竞品 Listing 与搜索词，了解买家实际在搜索什么。</span>
         </div>
         <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
         <div class="process-step">
-          <strong>Buyer intent mapping</strong>
-          <span>Group findings into the specific questions and objections a buyer has before adding to cart.</span>
+          <strong>买家意图映射</strong>
+          <span>将调研结果归纳为买家下单前的具体问题和顾虑。</span>
         </div>
         <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
         <div class="process-step">
-          <strong>Copy restructure</strong>
-          <span>Rewrite title, bullets, and description around those intents with specific, checkable claims.</span>
+          <strong>文案结构重组</strong>
+          <span>围绕这些意图，以具体且可核验的主张重写标题、五点和描述。</span>
         </div>
         <span class="process-arrow" aria-hidden="true"><span class="arrow-h">&rarr;</span><span class="arrow-v">&darr;</span></span>
         <div class="process-step">
-          <strong>Metrics review</strong>
-          <span>Compare before/after coverage of keywords, specs, and objections addressed to confirm the rewrite worked.</span>
+          <strong>指标复盘</strong>
+          <span>比较优化前后的关键词、规格与异议覆盖，确认重写是否有效。</span>
         </div>
       </div>
     </section>
 
     <section class="tooling" aria-labelledby="tooling-title">
-      <p class="section-label" id="tooling-title">Tooling</p>
+      <p class="section-label" id="tooling-title">使用工具</p>
       <div class="tool-list">
         <div class="tool-row">
           <span class="tool-name">Claude Code</span>
           <span class="tool-arrow" aria-hidden="true">&rarr;</span>
-          <span class="tool-desc">site build &amp; iteration</span>
+          <span class="tool-desc">站点开发与迭代</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">SerpApi</span>
           <span class="tool-arrow" aria-hidden="true">&rarr;</span>
-          <span class="tool-desc">live Amazon competitor data powering the Scanner above</span>
+          <span class="tool-desc">为上方扫描器提供实时亚马逊竞品数据</span>
         </div>
         <div class="tool-row">
           <span class="tool-name">n8n</span>
           <span class="tool-arrow" aria-hidden="true">&rarr;</span>
-          <span class="tool-desc">automation workflows, e.g. competitor monitoring</span>
+          <span class="tool-desc">自动化工作流，例如竞品监控</span>
         </div>
       </div>
     </section>
 
     <footer class="footer">
       <div class="footer-block">
-        <strong>Open to full-time cross-border e-commerce operations roles</strong>
-        <span class="footer-location">Based in Jiangxi, China &middot; Available for on-site roles in Dongguan / Shenzhen</span>
+        <strong>正在寻找跨境电商运营全职机会</strong>
+        <span class="footer-location">常驻中国江西 · 可接受东莞 / 深圳线下岗位</span>
       </div>
       <span>WeChat: Cnn7c7</span>
     </footer>
   </main>
 
-  <script>
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const title = document.querySelector("#hero-title");
-    const fullTitle = title.textContent.trim();
-
-    if (!reduceMotion) {
-      title.textContent = "";
-      title.classList.add("typing");
-
-      let titleIndex = 0;
-      const typeTitle = () => {
-        title.textContent = fullTitle.slice(0, titleIndex);
-        titleIndex += 1;
-
-        if (titleIndex <= fullTitle.length) {
-          window.setTimeout(typeTitle, 34);
-        } else {
-          window.setTimeout(() => title.classList.remove("typing"), 900);
-        }
-      };
-
-      window.setTimeout(typeTitle, 260);
-    }
-
-    const glow = document.querySelector(".cursor-glow");
-    let cursorX = window.innerWidth / 2;
-    let cursorY = window.innerHeight / 2;
-    let glowX = cursorX;
-    let glowY = cursorY;
-
-    const animateCursorGlow = () => {
-      glowX += (cursorX - glowX) * 0.13;
-      glowY += (cursorY - glowY) * 0.13;
-      glow.style.transform = `translate3d(${glowX - 140}px, ${glowY - 140}px, 0)`;
-      requestAnimationFrame(animateCursorGlow);
-    };
-
-    if (window.matchMedia("(pointer: fine)").matches && !reduceMotion) {
-      window.addEventListener("pointermove", (event) => {
-        cursorX = event.clientX;
-        cursorY = event.clientY;
-        glow.style.opacity = "1";
-      });
-
-      window.addEventListener("pointerleave", () => {
-        glow.style.opacity = "0";
-      });
-
-      animateCursorGlow();
-    }
-
-    const canvas = document.querySelector(".particle-field");
-    const hero = document.querySelector(".hero");
-    const context = canvas.getContext("2d");
-    const particles = [];
-    const particleCount = 26;
-
-    const resetParticle = (particle, initial = false) => {
-      const rect = hero.getBoundingClientRect();
-      particle.x = Math.random() * rect.width;
-      particle.y = initial ? Math.random() * rect.height : rect.height + 20;
-      particle.size = Math.random() * 2.2 + 0.8;
-      particle.speed = Math.random() * 0.34 + 0.12;
-      particle.drift = Math.random() * 0.28 - 0.14;
-      particle.alpha = Math.random() * 0.42 + 0.2;
-    };
-
-    const sizeParticleCanvas = () => {
-      const rect = hero.getBoundingClientRect();
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.max(1, Math.floor(rect.width * ratio));
-      canvas.height = Math.max(1, Math.floor(rect.height * ratio));
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    };
-
-    const drawParticles = () => {
-      const rect = hero.getBoundingClientRect();
-      context.clearRect(0, 0, rect.width, rect.height);
-
-      particles.forEach((particle) => {
-        particle.y -= particle.speed;
-        particle.x += particle.drift;
-
-        if (particle.y < -24 || particle.x < -24 || particle.x > rect.width + 24) {
-          resetParticle(particle);
-        }
-
-        const gradient = context.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          particle.size * 6
-        );
-        gradient.addColorStop(0, `rgba(41, 151, 255, ${particle.alpha})`);
-        gradient.addColorStop(0.55, `rgba(139, 92, 246, ${particle.alpha * 0.34})`);
-        gradient.addColorStop(1, "rgba(41, 151, 255, 0)");
-
-        context.fillStyle = gradient;
-        context.beginPath();
-        context.arc(particle.x, particle.y, particle.size * 6, 0, Math.PI * 2);
-        context.fill();
-      });
-
-      requestAnimationFrame(drawParticles);
-    };
-
-    sizeParticleCanvas();
-
-    for (let i = 0; i < particleCount; i += 1) {
-      const particle = {};
-      resetParticle(particle, true);
-      particles.push(particle);
-    }
-
-    if (!reduceMotion) {
-      drawParticles();
-      window.addEventListener("resize", () => {
-        sizeParticleCanvas();
-        particles.forEach((particle) => resetParticle(particle, true));
-      });
-    }
-
-    const cards = document.querySelectorAll(".project-card");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.18 }
-      );
-
-      cards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 90}ms`;
-        observer.observe(card);
-      });
-
-      window.setTimeout(() => {
-        cards.forEach((card) => card.classList.add("is-visible"));
-      }, 900);
-    } else {
-      cards.forEach((card) => card.classList.add("is-visible"));
-    }
-  </script>
   <script src="assets/amazon-analyzer.js"></script>
 </body>
 </html>

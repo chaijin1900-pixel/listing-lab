@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listing Lab | AI Listing Optimizer</title>
+  <title>Listing Lab｜AI Listing 优化器</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -21,6 +21,7 @@
       --opt-soft: rgba(0, 214, 143, 0.07);
       --opt-line: rgba(0, 214, 143, 0.24);
       --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      --focus-ring: #8ecbff;
     }
 
     * {
@@ -30,13 +31,14 @@
     html {
       scroll-behavior: smooth;
       background: var(--bg);
+      overflow-x: clip;
     }
 
     body {
       position: relative;
       min-height: 100vh;
       margin: 0;
-      overflow-x: hidden;
+      overflow-x: clip;
       color: var(--white);
       background: linear-gradient(160deg, #000000 0%, #030712 46%, #0a0f1a 100%);
       font-family: Inter, Arial, Helvetica, sans-serif;
@@ -58,6 +60,30 @@
 
     a {
       color: inherit;
+    }
+
+    :where(a, button, input, textarea):focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--bg);
+      background: var(--focus-ring);
+      font-weight: 800;
+      text-decoration: none;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus-visible {
+      outline-color: var(--white);
+      transform: translateY(0);
     }
 
     .page {
@@ -85,6 +111,9 @@
     }
 
     .nav-brand {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
       color: var(--white);
       font-family: Sora, Inter, sans-serif;
       font-size: 1rem;
@@ -104,7 +133,7 @@
     .nav-link,
     .nav-tool {
       display: inline-flex;
-      min-height: 38px;
+      min-height: 44px;
       align-items: center;
       justify-content: center;
       padding: 8px 13px;
@@ -122,7 +151,6 @@
       border-color: var(--line);
       color: var(--white);
       background: rgba(255, 255, 255, 0.05);
-      outline: none;
     }
 
     .nav-tool {
@@ -135,7 +163,6 @@
     .nav-tool:hover,
     .nav-tool:focus-visible {
       filter: brightness(1.08);
-      outline: none;
     }
 
     /* ---------- Intro ---------- */
@@ -201,13 +228,13 @@
     }
 
     .field-label .optional {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.64);
       font-size: 0.82rem;
       font-weight: 600;
     }
 
     .char-count {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.64);
       font-size: 0.8rem;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
@@ -224,7 +251,6 @@
       color: var(--white);
       background: rgba(0, 0, 0, 0.3);
       font: inherit;
-      outline: none;
     }
 
     textarea {
@@ -245,7 +271,7 @@
 
     textarea::placeholder,
     .field input::placeholder {
-      color: rgba(255, 255, 255, 0.36);
+      color: rgba(255, 255, 255, 0.58);
     }
 
     textarea:focus,
@@ -284,7 +310,6 @@
     .submit-btn:hover:not(:disabled),
     .submit-btn:focus-visible {
       filter: brightness(1.08);
-      outline: none;
     }
 
     .submit-btn:disabled {
@@ -299,7 +324,7 @@
 
     .secure-note {
       margin: 2px 0 0;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.64);
       font-size: 0.8rem;
       line-height: 1.5;
     }
@@ -492,6 +517,44 @@
     }
 
     @media (max-width: 720px) {
+      .site-nav {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 6px 8px;
+        align-items: center;
+        padding: 8px 10px 8px 14px;
+        border-radius: 18px;
+      }
+
+      .nav-links {
+        display: contents;
+      }
+
+      .nav-brand {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .nav-link {
+        padding-inline: 8px;
+        font-size: 0.76rem;
+      }
+
+      .nav-link:nth-child(1) {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .nav-link:nth-child(2) {
+        grid-column: 2;
+        grid-row: 2;
+      }
+
+      .nav-tool {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
       .intro h1 {
         font-size: 1.9rem;
       }
@@ -531,19 +594,20 @@
     }
   </style>
 </head>
-<body>
-  <main class="page" id="top">
+<body id="top">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <main class="page" id="main-content">
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="nav-brand" href="index.html" aria-label="Listing Lab home">Listing Lab</a>
+      <a class="nav-brand" href="index.html" aria-label="Listing Lab 首页">Listing Lab</a>
       <div class="nav-links">
-        <a class="nav-link" href="index.html#portfolio-title">Case Studies</a>
-        <a class="nav-link" href="index.html#amazon-analyzer">Competitor Analyzer</a>
+        <a class="nav-link" href="index.html#portfolio-title">案例作品</a>
+        <a class="nav-link" href="index.html#amazon-analyzer">竞品扫描</a>
         <a class="nav-tool" href="optimizer.html" aria-current="page">AI Listing Optimizer</a>
       </div>
     </nav>
 
     <header class="intro">
-      <p class="section-label">AI Copy Tool</p>
+      <p class="section-label">AI 文案工具</p>
       <h1>Listing 优化器</h1>
       <p>粘贴 Listing 原文，DeepSeek 会重写出关键词更丰富、卖点更清晰的版本，并逐条说明修改理由。</p>
     </header>
@@ -630,8 +694,8 @@
     </section>
 
     <footer class="footer">
-      <span>Listing Lab · AI Listing Optimizer</span>
-      <span>Powered by DeepSeek · 演示用途</span>
+      <span>Listing Lab · AI Listing 优化器</span>
+      <span>由 DeepSeek 驱动 · 演示用途</span>
     </footer>
   </main>
 
